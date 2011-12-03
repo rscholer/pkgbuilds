@@ -1,0 +1,31 @@
+# Maintainer: Raphael Scholer
+# Contributors: Dan Serban, Dany Martineau, Jordi De Groof
+
+pkgname="mp3diags"
+pkgver=1.0.09.063
+pkgrel=1
+pkgdesc="Identify issues with your MP3 files, fix those issues and make other changes"
+url="http://mp3diags.sourceforge.net/"
+license=("GPL")
+arch=("i686" "x86_64")
+depends=("boost-libs" "qt")
+makedepends=("boost")
+optdepends=('mp3gain: MP3 normalization support')
+source=("http://downloads.sf.net/mp3diags/mp3diags-src/MP3Diags-${pkgver}.tar.gz")
+
+build() {
+	cd "${srcdir}/MP3Diags-${pkgver}"
+	./AdjustMt.sh
+	qmake
+	make
+}
+
+package() {
+	install -D "${srcdir}/MP3Diags-${pkgver}/bin/MP3Diags" \
+		"${pkgdir}/usr/bin/MP3Diags"
+	install -D "${srcdir}/MP3Diags-${pkgver}/desktop/MP3Diags.desktop" \
+		"${pkgdir}/usr/share/applications/MP3Diags.desktop"
+	install -D "${srcdir}/MP3Diags-${pkgver}/desktop/MP3Diags48.png" \
+		"${pkgdir}/usr/share/pixmaps/MP3Diags.png"
+}
+md5sums=('9ca2f32c0820861a74f12ec1889a7909')
