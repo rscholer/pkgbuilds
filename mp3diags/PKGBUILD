@@ -2,7 +2,7 @@
 # Contributors: Dan Serban, Dany Martineau, Jordi De Groof
 
 pkgname="mp3diags"
-pkgver="1.0.09.063"
+pkgver="1.0.10.065"
 pkgrel=1
 pkgdesc="Identify issues with your MP3 files, fix those issues and make other changes"
 url="http://mp3diags.sourceforge.net/"
@@ -29,4 +29,4 @@ package() {
 	install -D "desktop/MP3Diags48.png" \
 		"${pkgdir}/usr/share/pixmaps/MP3Diags.png"
 }
-md5sums=('9ca2f32c0820861a74f12ec1889a7909')
+md5sums=('5609f782b10d64d4262d3937fb52adea')
