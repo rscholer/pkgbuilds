@@ -28,7 +28,7 @@ build() {
 
 package() {
   echo "Fixing symbolic links..."
-  cd $pkgdir/usr/bin
+  cd ${pkgdir}/usr/bin
   rm *
   ln -s /opt/Mathematica/Executables/math
   ln -s /opt/Mathematica/Executables/mathematica
