@@ -1,8 +1,8 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 # Contributors: Dan Serban, Dany Martineau, Jordi De Groof, RTFreedman
 
-pkgname="mp3diags"
-pkgver="1.0.10.065"
+pkgname=mp3diags-stable
+pkgver=1.0.10.065
 pkgrel=3
 pkgdesc="Identify issues with your MP3 files, fix those issues and make other changes"
 url="http://mp3diags.sourceforge.net/"
@@ -11,6 +11,7 @@ arch=("i686" "x86_64")
 depends=("boost-libs" "qt")
 makedepends=("boost")
 optdepends=('mp3gain: MP3 normalization support')
+provides=(mp3diags)
 source=("http://downloads.sf.net/mp3diags/mp3diags-src/MP3Diags-${pkgver}.tar.gz")
 
 build() {
