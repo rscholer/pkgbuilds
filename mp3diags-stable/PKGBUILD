@@ -12,6 +12,7 @@ depends=("boost-libs" "qt")
 makedepends=("boost")
 optdepends=('mp3gain: MP3 normalization support')
 provides=(mp3diags)
+conflicts=(mp3diags)
 source=("http://downloads.sf.net/mp3diags/mp3diags-src/MP3Diags-${pkgver}.tar.gz")
 
 build() {
