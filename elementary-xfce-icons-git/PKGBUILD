@@ -7,6 +7,7 @@ arch=('any')
 url='https://github.com/shimmerproject/elementary-xfce'
 license=('GPL')
 makedepends=('git')
+optdepends=("gnome-icon-theme: Full icon support")
 options=(!strip)
 install='elementary-xfce-icons.install'
 
