@@ -2,8 +2,8 @@
 # Contributors: Dan Serban, Dany Martineau, Jordi De Groof, RTFreedman
 
 pkgname=mp3diags-stable
-pkgver=1.0.10.065
-pkgrel=3
+pkgver=1.0.11.076
+pkgrel=1
 pkgdesc="Identify issues with your MP3 files, fix those issues and make other changes"
 url="http://mp3diags.sourceforge.net/"
 license=("GPL")
@@ -14,6 +14,7 @@ optdepends=('mp3gain: MP3 normalization support')
 provides=(mp3diags)
 conflicts=(mp3diags)
 source=("http://downloads.sf.net/mp3diags/mp3diags-src/MP3Diags-${pkgver}.tar.gz")
+md5sums=('96503bd5c61970ff8f598b607b101273')
 
 build() {
 	cd "${srcdir}/MP3Diags-${pkgver}"
@@ -34,4 +35,4 @@ package() {
 		install -p -m644 "desktop/MP3Diags${i}.png" "${pkgdir}/usr/share/icons/hicolor/${i}x${i}/apps/MP3Diags.png"
 	done
 }
-md5sums=('5609f782b10d64d4262d3937fb52adea')
+# vim: set sw=2 ts=2 et:
