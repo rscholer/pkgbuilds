@@ -23,10 +23,13 @@ build() {
 package() {
   cd ${srcdir}
   make DESTDIR="${pkgdir}" install
+
+  # install license
   install -m 644 -D "license" "${pkgdir}/usr/share/licenses/${pkgname}/license"
 
-  cd "${pkgdir}/usr"
-  rm -r "doc"
+  # doc folder is not placed correctly,
+  # also there is nothing of interest in it
+  rm -r "${pkgdir}/usr/doc"
 }
 
 # vim:set ts=2 sw=2 et:
