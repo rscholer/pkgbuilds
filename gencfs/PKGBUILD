@@ -2,14 +2,14 @@
 # Contributor: Andre Klitzing <andre () incubo () de>
 pkgname=gencfs
 pkgver=1.1
-pkgrel=3
+pkgrel=4
 pkgdesc="EncFS GUI for encrypted directory mounting"
 arch=("i686" "x86_64")
 url="http://sallu.tuxfamily.org"
 license=("custom")
 depends=("encfs" "gtk2")
 makedepends=("cmake")
-source=("http://sallu.tuxfamily.org/IMG/bz2/${pkgname}-${pkgver//./-}-tar.bz2"
+source=("http://sallu.tuxfamily.org/IMG/bz2/${pkgname}-${pkgver}.tar.bz2"
         "license")
 md5sums=('1cedb4f74808394ca0488006fda52995'
          '2d740db2d9a00ce8e4d54d3ea8789b5a')
