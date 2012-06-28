@@ -1,11 +1,11 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=mathematica
 pkgver=8.0.4
-pkgrel=4
+pkgrel=5
 pkgdesc="A computational software program used for technical computing."
 arch=('i686' 'x86_64')
 url="http://www.wolfram.com/mathematica/"
-license=('proprietary')
+license=('custom')
 depends=('ttf-bitstream-vera')
 source=("Mathematica_${pkgver}_LINUX.sh"
         "wolfram-all.menu"
