@@ -8,3 +8,4 @@
 *.tar*
 */pkg/
 */src/
+local
