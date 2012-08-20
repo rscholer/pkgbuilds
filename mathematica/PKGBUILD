@@ -12,7 +12,7 @@ depends=('ttf-bitstream-vera'
          'xorg-fonts-type1')
 source=("Mathematica_${pkgver}_LINUX.sh"
         "wolfram-all.menu"
-        "LICENSE.pdf")
+        "license.pdf")
 install='install'
 options=('!strip')
 md5sums=('02d4619b55c1d1289de651fdf896d29a'
@@ -34,8 +34,8 @@ build() {
 package() {
   cd ${srcdir}
   # Install license
-  install -m 644 -D "LICENSE.pdf" \
-    "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.pdf"
+  install -m 644 -D "license.pdf" \
+    "${pkgdir}/usr/share/licenses/${pkgname}/license.pdf"
 
   # Fixing symbolic links
   cd ${pkgdir}/usr/bin
