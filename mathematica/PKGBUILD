@@ -1,7 +1,7 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=mathematica
 pkgver=8.0.4
-pkgrel=6
+pkgrel=7
 pkgdesc="A computational software program used for technical computing."
 arch=('i686' 'x86_64')
 url="http://www.wolfram.com/mathematica/"
