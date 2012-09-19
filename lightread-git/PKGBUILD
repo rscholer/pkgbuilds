@@ -9,13 +9,13 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=lightread-git
 pkgver=20120920
-pkgrel=1
+pkgrel=2
 pkgdesc="A Google Reader"
 arch=('any')
 url="https://github.com/stayradiated/LightRead"
 license=('custom')
 depends=( 'pygtk' 'python2' 'python2-gobject' 'pywebkitgtk' \
-          'python-notify' 'libwebkit3')
+          'python-notify' 'libwebkit3' 'hicolor-icon-theme')
 optdepends=('libdbusmenu: Unity support')
 makedepends=('git' 'python2-distutils-extra')
 conflicts=("lightread")
@@ -51,6 +51,10 @@ package() {
 
   install -m 644 -D "COPYING" \
     "${pkgdir}/usr/share/licenses/lightread-git/license.txt"
+
+  # Icon fix
+  ln -s "/usr/share/icons/hicolor/128x128/apps/lightread.png" \
+    "${pkgdir}/usr/share/lightread/media/lightread.png"
 }
 
 # vim:set ts=2 sw=2 et:
