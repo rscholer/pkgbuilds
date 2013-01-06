@@ -1,5 +1,5 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
-pkgname=mathematica
+pkgname=wolfram-mathematica
 pkgver=8.0.4
 pkgrel=8
 pkgdesc="A computational software program used for technical computing."
@@ -10,6 +10,7 @@ depends=('ttf-bitstream-vera'
          'font-mathematica'
          'xorg-fonts-alias'
          'xorg-fonts-type1')
+provides="mathematica"
 source=("Mathematica_${pkgver}_LINUX.sh"
         "license.pdf")
 install='install'
