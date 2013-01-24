@@ -1,7 +1,7 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=wolfram-mathematica
-pkgver=8.0.4
-pkgrel=8
+pkgver=9.0.0
+pkgrel=1
 pkgdesc="A computational software program used for technical computing."
 arch=('i686' 'x86_64')
 url="http://www.wolfram.com/mathematica/"
@@ -13,10 +13,12 @@ depends=('ttf-bitstream-vera'
 provides="mathematica"
 source=("Mathematica_${pkgver}_LINUX.sh"
         "license.pdf")
-install='install'
+install='wolfram-mathematica.install'
+# Don't strip binaries. This greatly reduces build time by introducing a
+# negligible gain in package size (< 1 Mib).
 options=('!strip')
-md5sums=('02d4619b55c1d1289de651fdf896d29a'
-         '06812892478bfe73388396a710419f4a')
+md5sums=('a5fdc3d9879fa48fb8a72418f0252042'
+         '237b80869cc89f8cccd327234cbbb2f6')
 
 # Don't compress pkg tarball
 PKGEXT=".pkg.tar"
@@ -58,9 +60,14 @@ package() {
 
   cd ${pkgdir}/opt/Mathematica/SystemFiles/Installation
 
-  echo "Categories=Development;" >> wolfram-mathematica.desktop
-  cp wolfram-mathematica.desktop \
-    ${pkgdir}/usr/share/applications/wolfram-mathematica8.desktop
+  sed -e 's/^[ \t]*//' -i wolfram-mathematica9.desktop
+  sed -e "s/^Exec=.*/Exec=\/opt\/Mathematica\/Executables\/Mathematica -fs/" \
+      -i wolfram-mathematica9.desktop
+  sed -e "s/^TryExec=.*/TryExec=\/opt\/Mathematica\/Executables\/Mathematica/" \
+      -i wolfram-mathematica9.desktop
+  echo "Categories=Development;" >> wolfram-mathematica9.desktop
+  cp wolfram-mathematica9.desktop \
+    ${pkgdir}/usr/share/applications/wolfram-mathematica.desktop
   cp *.xml ${pkgdir}/usr/share/mime/packages/
 
 
