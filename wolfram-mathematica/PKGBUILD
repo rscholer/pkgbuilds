@@ -1,7 +1,7 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=wolfram-mathematica
 pkgver=9.0.0
-pkgrel=1
+pkgrel=2
 pkgdesc="A computational software program used for technical computing."
 arch=('i686' 'x86_64')
 url="http://www.wolfram.com/mathematica/"
@@ -27,19 +27,19 @@ PKGEXT=".pkg.tar"
 # your startdir.
 
 build() {
-  chmod +x ${srcdir}/Mathematica_${pkgver}_LINUX.sh
-  ${srcdir}/Mathematica_${pkgver}_LINUX.sh -- -execdir=${pkgdir}/usr/bin \
-    -targetdir=${pkgdir}/opt/Mathematica -auto
+  chmod +x "${srcdir}"/Mathematica_${pkgver}_LINUX.sh
+  "${srcdir}"/Mathematica_${pkgver}_LINUX.sh -- -execdir="${pkgdir}"/usr/bin \
+    -targetdir="${pkgdir}"/opt/Mathematica -auto
 }
 
 package() {
-  cd ${srcdir}
+  cd "${srcdir}"
   # Install license
   install -m 644 -D "license.pdf" \
     "${pkgdir}/usr/share/licenses/${pkgname}/license.pdf"
 
   # Fixing symbolic links
-  cd ${pkgdir}/usr/bin
+  cd "${pkgdir}"/usr/bin
   rm *
   ln -s /opt/Mathematica/Executables/math
   ln -s /opt/Mathematica/Executables/mathematica
@@ -53,12 +53,12 @@ package() {
   fi
 
   # Copying menu and mimetype information
-  mkdir -p ${pkgdir}/usr/share/applications
-  mkdir -p ${pkgdir}/usr/share/desktop-directories
-  mkdir -p ${pkgdir}/usr/share/mime/packages
-  mkdir -p ${pkgdir}/etc/xdg/menus/applications-merged
+  mkdir -p "${pkgdir}"/usr/share/applications
+  mkdir -p "${pkgdir}"/usr/share/desktop-directories
+  mkdir -p "${pkgdir}"/usr/share/mime/packages
+  mkdir -p "${pkgdir}"/etc/xdg/menus/applications-merged
 
-  cd ${pkgdir}/opt/Mathematica/SystemFiles/Installation
+  cd "${pkgdir}"/opt/Mathematica/SystemFiles/Installation
 
   sed -e 's/^[ \t]*//' -i wolfram-mathematica9.desktop
   sed -e "s/^Exec=.*/Exec=\/opt\/Mathematica\/Executables\/Mathematica -fs/" \
@@ -67,41 +67,41 @@ package() {
       -i wolfram-mathematica9.desktop
   echo "Categories=Development;" >> wolfram-mathematica9.desktop
   cp wolfram-mathematica9.desktop \
-    ${pkgdir}/usr/share/applications/wolfram-mathematica.desktop
-  cp *.xml ${pkgdir}/usr/share/mime/packages/
+    "${pkgdir}"/usr/share/applications/wolfram-mathematica.desktop
+  cp *.xml "${pkgdir}"/usr/share/mime/packages/
 
 
   # Copying icons
-  cd ${srcdir}
-  mkdir -p ${pkgdir}/usr/share/icons/hicolor/{32x32,64x64,128x128}/{apps,mimetypes}
-  cd ${pkgdir}/opt/Mathematica/SystemFiles/FrontEnd/SystemResources/X
+  cd "${srcdir}"
+  mkdir -p "${pkgdir}"/usr/share/icons/hicolor/{32x32,64x64,128x128}/{apps,mimetypes}
+  cd "${pkgdir}"/opt/Mathematica/SystemFiles/FrontEnd/SystemResources/X
   for i in "32" "64" "128"; do
     cp Mathematica-${i}.png \
-      ${pkgdir}/usr/share/icons/hicolor/${i}x${i}/apps/wolfram-mathematica.png
+      "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/apps/wolfram-mathematica.png
     cp MathematicaPlayer-${i}.png \
-      ${pkgdir}/usr/share/icons/hicolor/${i}x${i}/apps/wolfram-mathematicaplayer.png
+      "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/apps/wolfram-mathematicaplayer.png
     cp vnd.wolfram.cdf-${i}.png \
-      ${pkgdir}/usr/share/icons/hicolor/${i}x${i}/mimetypes/application-vnd.wolfram.cdf.png
+      "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/application-vnd.wolfram.cdf.png
 
     cp MathematicaDoc-${i}.png \
-      ${pkgdir}/usr/share/icons/hicolor/${i}x${i}/mimetypes/application-mathematica.png
+      "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/application-mathematica.png
     cp MathematicaPlayerDoc-${i}.png \
-      ${pkgdir}/usr/share/icons/hicolor/${i}x${i}/mimetypes/application-mathematicaplayer.png
+      "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/application-mathematicaplayer.png
     cp vnd.wolfram.cdfDoc-${i}.png \
-      ${pkgdir}/usr/share/icons/hicolor/${i}x${i}/mimetypes/application-vnd.wolfram.cdf.png
+      "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/application-vnd.wolfram.cdf.png
 
     cp MathematicaDoc-${i}.png \
-      ${pkgdir}/usr/share/icons/hicolor/${i}x${i}/mimetypes/gnome-mime-application-mathematica.png
+      "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/gnome-mime-application-mathematica.png
     cp MathematicaPlayerDoc-${i}.png \
-      ${pkgdir}/usr/share/icons/hicolor/${i}x${i}/mimetypes/gnome-mime-application-mathematicaplayer.png
+      "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/gnome-mime-application-mathematicaplayer.png
     cp vnd.wolfram.cdfDoc-${i}.png \
-      ${pkgdir}/usr/share/icons/hicolor/${i}x${i}/mimetypes/gnome-mime-application-vnd.wolfram.cdf.png
+      "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/gnome-mime-application-vnd.wolfram.cdf.png
   done
 
   # Copying manpages
-  mkdir -p ${pkgdir}/usr/share/man/man1
-  cd ${pkgdir}/opt/Mathematica/SystemFiles/SystemDocumentation/Unix
-  cp *.1 ${pkgdir}/usr/share/man/man1
+  mkdir -p "${pkgdir}"/usr/share/man/man1
+  cd "${pkgdir}"/opt/Mathematica/SystemFiles/SystemDocumentation/Unix
+  cp *.1 "${pkgdir}"/usr/share/man/man1
 }
 
 # vim:set ts=2 sw=2 et:
