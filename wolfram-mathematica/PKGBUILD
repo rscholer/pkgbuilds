@@ -61,9 +61,9 @@ package() {
   cd "${pkgdir}"/opt/Mathematica/SystemFiles/Installation
 
   sed -e 's/^[ \t]*//' -i wolfram-mathematica9.desktop
-  sed -e "s/^Exec=.*/Exec=\/opt\/Mathematica\/Executables\/Mathematica -fs/" \
+  sed -e 's/^Exec=.*/Exec=\/opt\/Mathematica\/Executables\/Mathematica -fs/' \
       -i wolfram-mathematica9.desktop
-  sed -e "s/^TryExec=.*/TryExec=\/opt\/Mathematica\/Executables\/Mathematica/" \
+  sed -e 's/^TryExec=.*/TryExec=\/opt\/Mathematica\/Executables\/Mathematica/' \
       -i wolfram-mathematica9.desktop
   echo "Categories=Development;" >> wolfram-mathematica9.desktop
   cp wolfram-mathematica9.desktop \
