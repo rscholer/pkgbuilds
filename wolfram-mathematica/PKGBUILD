@@ -1,7 +1,7 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=wolfram-mathematica
 pkgver=9.0.0
-pkgrel=2
+pkgrel=3
 pkgdesc="A computational software program used for technical computing."
 arch=('i686' 'x86_64')
 url="http://www.wolfram.com/mathematica/"
@@ -54,9 +54,7 @@ package() {
 
   # Copying menu and mimetype information
   mkdir -p "${pkgdir}"/usr/share/applications
-  mkdir -p "${pkgdir}"/usr/share/desktop-directories
   mkdir -p "${pkgdir}"/usr/share/mime/packages
-  mkdir -p "${pkgdir}"/etc/xdg/menus/applications-merged
 
   cd "${pkgdir}"/opt/Mathematica/SystemFiles/Installation
 
