@@ -1,7 +1,7 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=wolfram-mathematica
-pkgver=9.0.0
-pkgrel=3
+pkgver=9.0.1
+pkgrel=1
 pkgdesc="A computational software program used for technical computing."
 arch=('i686' 'x86_64')
 url="http://www.wolfram.com/mathematica/"
@@ -10,14 +10,14 @@ depends=('ttf-bitstream-vera'
          'font-mathematica'
          'xorg-fonts-alias'
          'xorg-fonts-type1')
-provides="mathematica"
+provides=("mathematica")
 source=("Mathematica_${pkgver}_LINUX.sh"
         "license.pdf")
 install='wolfram-mathematica.install'
 # Don't strip binaries. This greatly reduces build time by introducing a
 # negligible gain in package size (< 1 Mib).
 options=('!strip')
-md5sums=('a5fdc3d9879fa48fb8a72418f0252042'
+md5sums=('ee362b11a50dbb71ab620da133a8fc6d'
          '237b80869cc89f8cccd327234cbbb2f6')
 
 # Don't compress pkg tarball
@@ -40,13 +40,14 @@ package() {
 
   # Fixing symbolic links
   cd "${pkgdir}"/usr/bin
+  echo *
   rm ./*
   ln -s /opt/Mathematica/Executables/math
   ln -s /opt/Mathematica/Executables/mathematica
   ln -s /opt/Mathematica/Executables/Mathematica
   ln -s /opt/Mathematica/Executables/mcc
   ln -s /opt/Mathematica/Executables/MathKernel
-  if [ "${CARCH}" = "x86_64" ]; then
+  if [[ "${CARCH}" == "x86_64" ]]; then
     ln -s /opt/Mathematica/SystemFiles/Kernel/Binaries/Linux-x86-64/MathematicaScript
   else
     ln -s /opt/Mathematica/SystemFiles/Kernel/Binaries/Linux/MathematicaScript
