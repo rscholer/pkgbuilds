@@ -65,9 +65,9 @@ package() {
   sed -e 's/^TryExec=.*/TryExec=\/opt\/Mathematica\/Executables\/Mathematica/' \
       -i wolfram-mathematica9.desktop
   echo "Categories=Development;" >> wolfram-mathematica9.desktop
-  install -D  wolfram-mathematica9.desktop \
+  install -m 664 -D wolfram-mathematica9.desktop \
     "${pkgdir}"/usr/share/applications/wolfram-mathematica.desktop
-  install -D *.xml "${pkgdir}"/usr/share/mime/packages/
+  install -m 664 -D *.xml "${pkgdir}"/usr/share/mime/packages/
 
 
   # Copying icons
@@ -75,32 +75,32 @@ package() {
   mkdir -p "${pkgdir}"/usr/share/icons/hicolor/{32x32,64x64,128x128}/{apps,mimetypes}
   cd "${pkgdir}"/opt/Mathematica/SystemFiles/FrontEnd/SystemResources/X
   for i in "32" "64" "128"; do
-    install -D Mathematica-${i}.png \
+    install -m 664 -D Mathematica-${i}.png \
       "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/apps/wolfram-mathematica.png
-    install -D MathematicaPlayer-${i}.png \
+    install -m 664 -D MathematicaPlayer-${i}.png \
       "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/apps/wolfram-mathematicaplayer.png
-    install -D vnd.wolfram.cdf-${i}.png \
+    install -m 664 -D vnd.wolfram.cdf-${i}.png \
       "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/application-vnd.wolfram.cdf.png
 
-    install -D MathematicaDoc-${i}.png \
+    install -m 664 -D MathematicaDoc-${i}.png \
       "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/application-mathematica.png
-    install -D MathematicaPlayerDoc-${i}.png \
+    install -m 664 -D MathematicaPlayerDoc-${i}.png \
       "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/application-mathematicaplayer.png
-    install -D vnd.wolfram.cdfDoc-${i}.png \
+    install -m 664 -D vnd.wolfram.cdfDoc-${i}.png \
       "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/application-vnd.wolfram.cdf.png
 
-    install -D MathematicaDoc-${i}.png \
+    install -m 664 -D MathematicaDoc-${i}.png \
       "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/gnome-mime-application-mathematica.png
-    install -D MathematicaPlayerDoc-${i}.png \
+    install -m 664 -D MathematicaPlayerDoc-${i}.png \
       "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/gnome-mime-application-mathematicaplayer.png
-    install -D vnd.wolfram.cdfDoc-${i}.png \
+    install -m 664 -D vnd.wolfram.cdfDoc-${i}.png \
       "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/gnome-mime-application-vnd.wolfram.cdf.png
   done
 
   # Copying manpages
   mkdir -p "${pkgdir}"/usr/share/man/man1
   cd "${pkgdir}"/opt/Mathematica/SystemFiles/SystemDocumentation/Unix
-  install -D *.1 "${pkgdir}"/usr/share/man/man1
+  install -m 664 -D *.1 "${pkgdir}"/usr/share/man/man1
 }
 
 # vim:set ts=2 sw=2 et:
