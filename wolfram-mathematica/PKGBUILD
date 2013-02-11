@@ -40,7 +40,6 @@ package() {
 
   # Fixing symbolic links
   cd "${pkgdir}"/usr/bin
-  echo *
   rm ./*
   ln -s /opt/Mathematica/Executables/math
   ln -s /opt/Mathematica/Executables/mathematica
