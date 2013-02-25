@@ -1,7 +1,7 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=wolfram-mathematica
 pkgver=9.0.1
-pkgrel=2
+pkgrel=3
 pkgdesc="A computational software program used for technical computing."
 arch=('i686' 'x86_64')
 url="http://www.wolfram.com/mathematica/"
@@ -17,7 +17,7 @@ install='wolfram-mathematica.install'
 # Don't strip binaries. This greatly reduces build time by introducing a
 # negligible gain in package size (< 1 Mib).
 options=('!strip')
-md5sums=('ee362b11a50dbb71ab620da133a8fc6d'
+md5sums=('7fcbc4d1488757b10ef07740ac30a580'
          '237b80869cc89f8cccd327234cbbb2f6')
 
 # Don't compress pkg tarball
