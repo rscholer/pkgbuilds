@@ -19,3 +19,4 @@ pre_remove() {
 	rm usr/share/icons/elementary-xfce/icon-theme.cache
 	rm usr/share/icons/elementary-xfce-dark/icon-theme.cache
 }
+# vim:set ts=2 sw=2 et:
