@@ -11,10 +11,10 @@ md5sums=('6762faa68d9b42630dc4f3538f94ce89')
 
 package() {
   mkdir -p "${pkgdir}/usr/share/licenses/${pkgname}"
-	cd "${srcdir}/${pkgname}/usr/share/backgrounds/linuxmint-nadia-extra"
+  cd "${srcdir}/${pkgname}/usr/share/backgrounds/linuxmint-nadia-extra"
   mv  Credits "${pkgdir}/usr/share/licenses/${pkgname}/"
 
-	cd "${srcdir}/${pkgname}"
-	cp -R ./usr ${pkgdir}
+  cd "${srcdir}/${pkgname}"
+  cp -R ./usr ${pkgdir}
 }
 # vim:set ts=2 sw=2 et:
