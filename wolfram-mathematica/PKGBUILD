@@ -16,6 +16,7 @@ source=("Mathematica_${pkgver}_LINUX.sh"
 install='wolfram-mathematica.install'
 # Don't strip binaries. This greatly reduces build time by introducing a
 # negligible gain in package size (< 1 Mib).
+# It will also avoid a lot of errors when running Mathematica.
 options=('!strip')
 md5sums=('7fcbc4d1488757b10ef07740ac30a580'
          '237b80869cc89f8cccd327234cbbb2f6')
