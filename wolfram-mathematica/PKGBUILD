@@ -27,14 +27,18 @@ PKGEXT=".pkg.tar"
 # To build this package you need to place the mathematica-installer into
 # your startdir.
 
-build() {
-  chmod +x "${srcdir}"/Mathematica_${pkgver}_LINUX.sh
-  "${srcdir}"/Mathematica_${pkgver}_LINUX.sh -- -execdir="${pkgdir}"/usr/bin \
-    -targetdir="${pkgdir}"/opt/Mathematica -auto
+prepare() {
+  cd "${srcdir}"
+  chmod +x "./Mathematica_${pkgver}_LINUX.sh"
 }
 
 package() {
   cd "${srcdir}"
+
+  # Extract Mathematica
+  ./Mathematica_${pkgver}_LINUX.sh -- -execdir="${pkgdir}"/usr/bin \
+    -targetdir="${pkgdir}"/opt/Mathematica -auto
+
   # Install license
   install -m 644 -D "license.pdf" \
     "${pkgdir}/usr/share/licenses/${pkgname}/license.pdf"
