@@ -1,7 +1,7 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=wolfram-mathematica
 pkgver=9.0.1
-pkgrel=4
+pkgrel=5
 pkgdesc="A computational software program used for technical computing."
 arch=('i686' 'x86_64')
 url="http://www.wolfram.com/mathematica/"
@@ -68,7 +68,7 @@ package() {
       -i wolfram-mathematica9.desktop
   sed -e 's/^TryExec=.*/TryExec=\/opt\/Mathematica\/Executables\/Mathematica/' \
       -i wolfram-mathematica9.desktop
-  echo "Categories=Development;" >> wolfram-mathematica9.desktop
+  echo "Categories=Development;Math;Science;" >> wolfram-mathematica9.desktop
   install -m 664 -D wolfram-mathematica9.desktop \
     "${pkgdir}"/usr/share/applications/wolfram-mathematica.desktop
   install -m 664 -D *.xml "${pkgdir}"/usr/share/mime/packages/
