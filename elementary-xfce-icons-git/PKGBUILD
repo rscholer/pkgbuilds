@@ -14,7 +14,7 @@ md5sums=("SKIP")
 
 pkgver() {
   cd "${srcdir}/elementary-xfce"
-  echo "$(git describe |sed 's#-#_#g;s#v##')"
+  echo "$(git describe --always |sed 's#-#_#g;s#v##')"
 }
 
 package() {
