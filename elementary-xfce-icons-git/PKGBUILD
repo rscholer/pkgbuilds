@@ -1,11 +1,11 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=elementary-xfce-icons-git
 pkgver=0.2_445_g1766fbc
-pkgrel=1
+pkgrel=2
 pkgdesc='Elementary icons with better Xfce support'
 arch=('any')
 url='https://github.com/shimmerproject/elementary-xfce'
-license=('GPL')
+license=('GPL2')
 makedepends=('git')
 depends=('gnome-icon-theme')
 conflicts=('elementary-xfce-icons')
