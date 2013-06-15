@@ -2,7 +2,7 @@
 pkgname=wolfram-mathematica
 pkgver=9.0.1
 pkgrel=5
-pkgdesc="A computational software program used for technical computing."
+pkgdesc="Computational software program for technical computing."
 arch=('i686' 'x86_64')
 url="http://www.wolfram.com/mathematica/"
 license=('custom')
