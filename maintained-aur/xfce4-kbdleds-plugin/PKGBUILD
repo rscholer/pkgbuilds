@@ -1,6 +1,6 @@
-# Maintainer: tomberry88 <tomberry@live.it>
+# Maintainer: Raphael Scholer <rscholer@gmx.de>
+# Contributor: tomberry88 <tomberry@live.it>
 # Contributor: Gour-Gadadhara Dasa <gour@atmarama.net>
-# Contributor: Raphael Scholer <rscholer@gmx.de>
 
 pkgname=xfce4-kbdleds-plugin
 pkgver=0.0.6
