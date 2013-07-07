@@ -1,0 +1,29 @@
+# Maintainer: tomberry88 <tomberry@live.it>
+# Contributor: Gour-Gadadhara Dasa <gour@atmarama.net>
+# Contributor: Raphael Scholer <rscholer@gmx.de>
+
+pkgname=xfce4-kbdleds-plugin
+pkgver=0.0.6
+pkgrel=2
+pkgdesc="Xfce keyboard leds panel plugin (based on sample plugin)"
+arch=('i686' 'x86_64')
+url="http://goodies.xfce.org/projects/panel-plugins/xfce4-kbdleds-plugin"
+license=('GPL2')
+depends=('xfce4-panel' 'libxfce4ui')
+makedepends=('intltool')
+source=(http://git.xfce.org/panel-plugins/xfce4-kbdleds-plugin/snapshot/$pkgname-$pkgver.tar.bz2)
+install=$pkgname.install
+
+md5sums=('f4d65f93eb2cea99df11ea431f3c3138')
+
+build() {
+    cd ${srcdir}/${pkgname}-${pkgver}
+    ./configure --prefix=/usr --libexecdir=/usr/lib
+    make || return 1
+}
+
+package() {
+    cd ${srcdir}/${pkgname}-${pkgver}
+    make DESTDIR=${pkgdir} install
+}
+
