@@ -15,13 +15,13 @@ md5sums=('1cedb4f74808394ca0488006fda52995'
          '2d740db2d9a00ce8e4d54d3ea8789b5a')
 
 build() {
-  cd ${srcdir}
+  cd "${srcdir}"
   cmake -D CMAKE_INSTALL_PREFIX=/usr "${pkgname}-${pkgver}"
   make
 }
 
 package() {
-  cd ${srcdir}
+  cd "${srcdir}"
   make DESTDIR="${pkgdir}" install
 
   # install license

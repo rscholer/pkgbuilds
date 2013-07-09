@@ -15,6 +15,6 @@ package() {
   mv  Credits "${pkgdir}/usr/share/licenses/${pkgname}/"
 
   cd "${srcdir}/${pkgname}"
-  cp -R ./usr ${pkgdir}
+  cp -R ./usr "${pkgdir}"
 }
 # vim:set ts=2 sw=2 et:
