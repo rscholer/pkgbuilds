@@ -1,11 +1,11 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=desktoggle-git
-pkgver=1.2_16_g4a4a657
+pkgver=1.2_17_g06578ae
 pkgrel=1
 pkgdesc='Hide all windows and show the desktop.'
 arch=('i686' 'x86_64')
 url='https://github.com/rscholer/desktoggle'
-license=('MIT')
+license=('GPL3')
 makedepends=('git' 'help2man')
 depends=('libx11')
 source=("git+${url}")
@@ -24,8 +24,5 @@ pkgver() {
 package() {
   cd "${srcdir}/desktoggle"
   make DESTDIR="${pkgdir}" prefix="/usr" install
-
-  mkdir -p ${pkgdir}/usr/share/licenses/${pkgname}
-  ln -s ../../doc/desktoggle/COPYING ${pkgdir}/usr/share/licenses/${pkgname}
 }
 # vim:set ts=2 sw=2 et:
