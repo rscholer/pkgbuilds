@@ -1,12 +1,12 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=desktoggle-git
-pkgver=1.2_4_ga8143ef
+pkgver=1.2_16_g4a4a657
 pkgrel=1
 pkgdesc='Hide all windows and show the desktop.'
 arch=('i686' 'x86_64')
 url='https://github.com/rscholer/desktoggle'
 license=('MIT')
-makedepends=('git')
+makedepends=('git' 'help2man')
 depends=('libx11')
 source=("git+${url}")
 md5sums=("SKIP")
