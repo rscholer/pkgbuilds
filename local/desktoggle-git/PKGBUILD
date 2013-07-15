@@ -9,7 +9,7 @@ license=('GPL3')
 makedepends=('git' 'help2man')
 depends=('libx11')
 source=("git+${url}")
-md5sums=("SKIP")
+md5sums=('SKIP')
 
 build() {
   cd "${srcdir}/desktoggle"
@@ -24,5 +24,8 @@ pkgver() {
 package() {
   cd "${srcdir}/desktoggle"
   make DESTDIR="${pkgdir}" prefix="/usr" install
+
+  # Remove unneeded files
+  rm -r "${pkgdir}/usr/share/doc"
 }
 # vim:set ts=2 sw=2 et:
