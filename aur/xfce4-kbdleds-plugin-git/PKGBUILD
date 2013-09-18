@@ -21,12 +21,12 @@ pkgver() {
 build() {
   cd "${srcdir}/xfce4-kbdleds-plugin"
   ./autogen.sh
-	./configure --prefix=/usr
-	make
+  ./configure --prefix=/usr
+  make
 }
 
 package() {
   cd "${srcdir}/xfce4-kbdleds-plugin"
-	make DESTDIR="${pkgdir}" install
+  make DESTDIR="${pkgdir}" install
 }
 # vim:set ts=2 sw=2 et:
