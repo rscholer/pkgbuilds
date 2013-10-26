@@ -1,7 +1,7 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=wolfram-mathematica
 pkgver=9.0.1
-pkgrel=6
+pkgrel=7
 pkgdesc="Computational software program for technical computing."
 arch=('i686' 'x86_64')
 url="http://www.wolfram.com/mathematica/"
@@ -29,13 +29,10 @@ PKGEXT=".pkg.tar"
 # your startdir.
 
 prepare() {
-  cd "${srcdir}"
   chmod +x "./Mathematica_${pkgver}_LINUX.sh"
 }
 
 package() {
-  cd "${srcdir}"
-
   # Extract Mathematica
   ./Mathematica_${pkgver}_LINUX.sh -- -execdir="${pkgdir}"/usr/bin \
     -targetdir="${pkgdir}"/opt/Mathematica -auto
@@ -76,7 +73,6 @@ package() {
 
 
   # Copying icons
-  cd "${srcdir}"
   mkdir -p "${pkgdir}"/usr/share/icons/hicolor/{32x32,64x64,128x128}/{apps,mimetypes}
   cd "${pkgdir}"/opt/Mathematica/SystemFiles/FrontEnd/SystemResources/X
   for i in "32" "64" "128"; do
