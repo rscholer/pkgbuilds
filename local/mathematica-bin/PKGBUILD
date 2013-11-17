@@ -10,6 +10,8 @@ depends=('ttf-bitstream-vera'
          'font-mathematica'
          'xorg-fonts-alias'
          'xorg-fonts-type1')
+replaces=("mathematica" "wolfram-mathematica")
+conflicts=("mathematica" "wolfram-mathematica")
 provides=("mathematica")
 source=("Mathematica_${pkgver}_LINUX.sh"
         "license.pdf")
