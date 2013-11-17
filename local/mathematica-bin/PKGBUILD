@@ -31,9 +31,12 @@ prepare() {
 }
 
 package() {
+  insdir="/opt/${pkgname}"
+  targetdir="${pkgdir}${insdir}"
+
   # Extract Mathematica
   ./Mathematica_${pkgver}_LINUX.sh -- -execdir="${pkgdir}"/usr/bin \
-    -targetdir="${pkgdir}"/opt/Mathematica -auto
+    -targetdir="${targetdir}" -auto
 
   # Install license
   install -m 644 -D "license.pdf" \
@@ -42,22 +45,22 @@ package() {
   # Fixing symbolic links
   cd "${pkgdir}"/usr/bin
   rm ./*
-  ln -s /opt/Mathematica/Executables/math
-  ln -s /opt/Mathematica/Executables/mathematica
-  ln -s /opt/Mathematica/Executables/Mathematica
-  ln -s /opt/Mathematica/Executables/mcc
-  ln -s /opt/Mathematica/Executables/MathKernel
+  ln -s ${insdir}/Executables/math
+  ln -s ${insdir}/Executables/mathematica
+  ln -s ${insdir}/Executables/Mathematica
+  ln -s ${insdir}/Executables/mcc
+  ln -s ${insdir}/Executables/MathKernel
   if [[ "${CARCH}" == "x86_64" ]]; then
-    ln -s /opt/Mathematica/SystemFiles/Kernel/Binaries/Linux-x86-64/MathematicaScript
+    ln -s ${insdir}/SystemFiles/Kernel/Binaries/Linux-x86-64/MathematicaScript
   else
-    ln -s /opt/Mathematica/SystemFiles/Kernel/Binaries/Linux/MathematicaScript
+    ln -s ${insdir}/SystemFiles/Kernel/Binaries/Linux/MathematicaScript
   fi
 
   # Copying menu and mimetype information
   mkdir -p "${pkgdir}"/usr/share/applications
   mkdir -p "${pkgdir}"/usr/share/mime/packages
 
-  cd "${pkgdir}"/opt/Mathematica/SystemFiles/Installation
+  cd "${targetdir}"/SystemFiles/Installation
 
   sed -e 's/^[ \t]*//' -i wolfram-mathematica9.desktop
   sed -e 's/^Exec=.*/Exec=\/opt\/Mathematica\/Executables\/Mathematica -fs/' \
@@ -72,7 +75,7 @@ package() {
 
   # Copying icons
   mkdir -p "${pkgdir}"/usr/share/icons/hicolor/{32x32,64x64,128x128}/{apps,mimetypes}
-  cd "${pkgdir}"/opt/Mathematica/SystemFiles/FrontEnd/SystemResources/X
+  cd "${targetdir}"/SystemFiles/FrontEnd/SystemResources/X
   for i in "32" "64" "128"; do
     install -m 664 -D Mathematica-${i}.png \
       "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/apps/wolfram-mathematica.png
@@ -98,7 +101,7 @@ package() {
 
   # Copying manpages
   mkdir -p "${pkgdir}"/usr/share/man/man1
-  cd "${pkgdir}"/opt/Mathematica/SystemFiles/SystemDocumentation/Unix
+  cd "${targetdir}"/SystemFiles/SystemDocumentation/Unix
   install -m 664 -D *.1 "${pkgdir}"/usr/share/man/man1
 }
 
