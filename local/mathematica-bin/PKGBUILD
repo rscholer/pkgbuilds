@@ -14,11 +14,13 @@ replaces=("mathematica" "wolfram-mathematica")
 conflicts=("mathematica" "wolfram-mathematica")
 provides=("mathematica")
 source=("Mathematica_${pkgver}_LINUX.sh"
-        "license.pdf")
+        "license.pdf"
+        "wolfram-mathematica.desktop")
 install="${pkgname}.install"
 options=('libtool' 'staticlibs' '!strip' '!upx')
 md5sums=('7fcbc4d1488757b10ef07740ac30a580'
-         '237b80869cc89f8cccd327234cbbb2f6')
+         '237b80869cc89f8cccd327234cbbb2f6'
+         '04705bb2989f8a10b2f8e493bdaf2c0a')
 
 # Don't compress pkg tarball
 PKGEXT=".pkg.tar"
@@ -62,14 +64,12 @@ package() {
 
   cd "${targetdir}"/SystemFiles/Installation
 
-  sed -e 's/^[ \t]*//' -i wolfram-mathematica9.desktop
-  sed -e 's/^Exec=.*/Exec=\/opt\/Mathematica\/Executables\/Mathematica -fs/' \
-      -i wolfram-mathematica9.desktop
-  sed -e 's/^TryExec=.*/TryExec=\/opt\/Mathematica\/Executables\/Mathematica/' \
-      -i wolfram-mathematica9.desktop
-  echo "Categories=Development;Math;Science;" >> wolfram-mathematica9.desktop
-  install -m 664 -D wolfram-mathematica9.desktop \
-    "${pkgdir}"/usr/share/applications/wolfram-mathematica.desktop
+  install -m 664 -D "${srcdir}"/wolfram-mathematica.desktop \
+    ./wolfram-mathematica.desktop
+  install -m 664 -D ./wolfram-mathematica.desktop \
+    ./wolfram-mathematica"${pkgver%%.*}".desktop
+  install -m 664 -D ./wolfram-mathematica.desktop \
+    "${pkgdir}"/usr/share/applications/wolfram-mathematica"${pkgver%%.*}".desktop
   install -m 664 -D *.xml "${pkgdir}"/usr/share/mime/packages/
 
 
