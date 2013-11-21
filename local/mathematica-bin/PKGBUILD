@@ -45,64 +45,88 @@ package() {
     "${pkgdir}/usr/share/licenses/${pkgname}/license.pdf"
 
   # Fixing symbolic links
-  cd "${pkgdir}"/usr/bin
-  rm ./*
-  ln -s ${insdir}/Executables/math
-  ln -s ${insdir}/Executables/mathematica
-  ln -s ${insdir}/Executables/Mathematica
-  ln -s ${insdir}/Executables/mcc
-  ln -s ${insdir}/Executables/MathKernel
+  for f in $(find "${targetdir}/Executables" -type f ! -name '.*'); do
+    f="$(basename "${f}")"
+
+    if [[ -e "${pkgdir}/usr/bin/${f}" ]]; then
+      rm "${pkgdir}/usr/bin/${f}"
+    fi
+
+    ln -s "${insdir}/Executables/${f}" "${pkgdir}/usr/bin/${f}"
+  done
+
+  rm "${pkgdir}/usr/bin/MathematicaScript"
   if [[ "${CARCH}" == "x86_64" ]]; then
-    ln -s ${insdir}/SystemFiles/Kernel/Binaries/Linux-x86-64/MathematicaScript
+    ln -s ${insdir}/SystemFiles/Kernel/Binaries/Linux-x86-64/MathematicaScript \
+      "${pkgdir}/usr/bin/"
   else
-    ln -s ${insdir}/SystemFiles/Kernel/Binaries/Linux/MathematicaScript
+    ln -s ${insdir}/SystemFiles/Kernel/Binaries/Linux/MathematicaScript \
+      "${pkgdir}/usr/bin/"
   fi
 
   # Copying menu and mimetype information
   mkdir -p "${pkgdir}"/usr/share/applications
   mkdir -p "${pkgdir}"/usr/share/mime/packages
 
-  cd "${targetdir}"/SystemFiles/Installation
-
-  install -m 664 -D "${srcdir}"/wolfram-mathematica.desktop \
-    ./wolfram-mathematica.desktop
   install -m 664 -D ./wolfram-mathematica.desktop \
-    ./wolfram-mathematica"${pkgver%%.*}".desktop
+    "${targetdir}/SystemFiles/Installation/wolfram-mathematica.desktop"
   install -m 664 -D ./wolfram-mathematica.desktop \
-    "${pkgdir}"/usr/share/applications/wolfram-mathematica"${pkgver%%.*}".desktop
-  install -m 664 -D *.xml "${pkgdir}"/usr/share/mime/packages/
+    "${targetdir}/SystemFiles/Installation/wolfram-mathematica${pkgver%%.*}.desktop"
+  install -m 664 -D ./wolfram-mathematica.desktop \
+    "${targetdir}/SystemFiles/Installation/Mathematica.desktop"
 
+  ln -s "${insdir}/SystemFiles/Installation/wolfram-mathematica.desktop" \
+    "${pkgdir}/usr/share/applications/wolfram-mathematica.desktop"
+
+  for f in $(find "${targetdir}/SystemFiles/Installation" -type f -name '*.xml'); do
+    f="$(basename "${f}")"
+    ln -s "${insdir}/SystemFiles/Installation/${f}" \
+      "${pkgdir}/usr/share/mime/packages/"
+   done
 
   # Copying icons
-  mkdir -p "${pkgdir}"/usr/share/icons/hicolor/{32x32,64x64,128x128}/{apps,mimetypes}
   cd "${targetdir}"/SystemFiles/FrontEnd/SystemResources/X
   for i in "32" "64" "128"; do
-    install -m 664 -D Mathematica-${i}.png \
-      "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/apps/wolfram-mathematica.png
-    install -m 664 -D MathematicaPlayer-${i}.png \
-      "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/apps/wolfram-mathematicaplayer.png
-    install -m 664 -D vnd.wolfram.cdf-${i}.png \
-      "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/application-vnd.wolfram.cdf.png
+    mkdir -p "${pkgdir}/usr/share/icons/hicolor/${i}x${i}/apps"
+    mkdir -p "${pkgdir}/usr/share/icons/hicolor/${i}x${i}/mimetypes"
 
-    install -m 664 -D MathematicaDoc-${i}.png \
-      "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/application-mathematica.png
-    install -m 664 -D MathematicaPlayerDoc-${i}.png \
-      "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/application-mathematicaplayer.png
-    install -m 664 -D vnd.wolfram.cdfDoc-${i}.png \
-      "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/application-vnd.wolfram.cdf.png
+    # Apps
+    for f in $(find "${targetdir}"/SystemFiles/FrontEnd/SystemResources/X/ \
+      \( -name "M*-${i}.png" -o -name "vnd.*-${i}.png" \) -not -name '*Doc*.png'); do
+      f="$(basename "${f}")"
+      g="$(echo ${f/\-${i}/} |tr '[:upper:]' '[:lower:]')"
 
-    install -m 664 -D MathematicaDoc-${i}.png \
-      "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/gnome-mime-application-mathematica.png
-    install -m 664 -D MathematicaPlayerDoc-${i}.png \
-      "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/gnome-mime-application-mathematicaplayer.png
-    install -m 664 -D vnd.wolfram.cdfDoc-${i}.png \
-      "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/mimetypes/gnome-mime-application-vnd.wolfram.cdf.png
+      ln -s "${insdir}/SystemFiles/FrontEnd/SystemResources/X/${f}" \
+        "${pkgdir}/usr/share/icons/hicolor/${i}x${i}/apps/wolfram-${g}"
+    done
+
+    # Mimetypes
+    for f in $(find "${targetdir}"/SystemFiles/FrontEnd/SystemResources/X/ \
+      -name "*Doc-${i}.png"); do
+      f="$(basename "${f}")"
+      g="$(echo ${f/Doc/} |tr '[:upper:]' '[:lower:]')"
+      g="${g/\-${i}/}"
+
+      ln -s "${insdir}/SystemFiles/FrontEnd/SystemResources/X/${f}" \
+        "${pkgdir}/usr/share/icons/hicolor/${i}x${i}/mimetypes/application-${g}"
+      ln -s "${insdir}/SystemFiles/FrontEnd/SystemResources/X/${f}" \
+        "${pkgdir}/usr/share/icons/hicolor/${i}x${i}/mimetypes/gnome-mime-application-${g}"
+    done
   done
 
   # Copying manpages
-  mkdir -p "${pkgdir}"/usr/share/man/man1
-  cd "${targetdir}"/SystemFiles/SystemDocumentation/Unix
-  install -m 664 -D *.1 "${pkgdir}"/usr/share/man/man1
+  for section in "1" "2" "3" "4" "5" "6" "7" "8" "9"; do
+    for f in $(find "${targetdir}/SystemFiles/SystemDocumentation/Unix" -type f -name "*.${section}"); do
+      f="$(basename "${f}")"
+      if [[ "${section}" == "1" && ! -e "${pkgdir}/usr/bin/${f/\.${section}/}" ]]; then
+        continue
+      else
+        mkdir -p "${pkgdir}/usr/share/man/man${section}"
+        ln -s "${insdir}/SystemFiles/SystemDocumentation/Unix/${f}" \
+          "${pkgdir}/usr/share/man/man${section}/${f}"
+      fi
+    done
+  done
 }
 
 # vim:set ts=2 sw=2 et:
