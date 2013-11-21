@@ -37,7 +37,7 @@ package() {
   targetdir="${pkgdir}${insdir}"
 
   # Extract Mathematica
-  ./Mathematica_${pkgver}_LINUX.sh -- -execdir="${pkgdir}"/usr/bin \
+  ./Mathematica_${pkgver}_LINUX.sh -- -execdir="${pkgdir}/usr/bin" \
     -targetdir="${targetdir}" -auto
 
   # Install license
@@ -57,22 +57,22 @@ package() {
 
   rm "${pkgdir}/usr/bin/MathematicaScript"
   if [[ "${CARCH}" == "x86_64" ]]; then
-    ln -s ${insdir}/SystemFiles/Kernel/Binaries/Linux-x86-64/MathematicaScript \
+    ln -s "${insdir}/SystemFiles/Kernel/Binaries/Linux-x86-64/MathematicaScript" \
       "${pkgdir}/usr/bin/"
   else
-    ln -s ${insdir}/SystemFiles/Kernel/Binaries/Linux/MathematicaScript \
+    ln -s "${insdir}/SystemFiles/Kernel/Binaries/Linux/MathematicaScript" \
       "${pkgdir}/usr/bin/"
   fi
 
   # Copying menu and mimetype information
-  mkdir -p "${pkgdir}"/usr/share/applications
-  mkdir -p "${pkgdir}"/usr/share/mime/packages
+  mkdir -p "${pkgdir}/usr/share/applications"
+  mkdir -p "${pkgdir}/usr/share/mime/packages"
 
-  install -m 664 -D ./wolfram-mathematica.desktop \
+  install -m 664 -D "./wolfram-mathematica.desktop" \
     "${targetdir}/SystemFiles/Installation/wolfram-mathematica.desktop"
-  install -m 664 -D ./wolfram-mathematica.desktop \
+  install -m 664 -D "./wolfram-mathematica.desktop" \
     "${targetdir}/SystemFiles/Installation/wolfram-mathematica${pkgver%%.*}.desktop"
-  install -m 664 -D ./wolfram-mathematica.desktop \
+  install -m 664 -D "./wolfram-mathematica.desktop" \
     "${targetdir}/SystemFiles/Installation/Mathematica.desktop"
 
   ln -s "${insdir}/SystemFiles/Installation/wolfram-mathematica.desktop" \
@@ -85,13 +85,12 @@ package() {
    done
 
   # Copying icons
-  cd "${targetdir}"/SystemFiles/FrontEnd/SystemResources/X
   for i in "32" "64" "128"; do
     mkdir -p "${pkgdir}/usr/share/icons/hicolor/${i}x${i}/apps"
     mkdir -p "${pkgdir}/usr/share/icons/hicolor/${i}x${i}/mimetypes"
 
     # Apps
-    for f in $(find "${targetdir}"/SystemFiles/FrontEnd/SystemResources/X/ \
+    for f in $(find "${targetdir}/SystemFiles/FrontEnd/SystemResources/X" \
       \( -name "M*-${i}.png" -o -name "vnd.*-${i}.png" \) -not -name '*Doc*.png'); do
       f="$(basename "${f}")"
       g="$(echo ${f/\-${i}/} |tr '[:upper:]' '[:lower:]')"
@@ -101,7 +100,7 @@ package() {
     done
 
     # Mimetypes
-    for f in $(find "${targetdir}"/SystemFiles/FrontEnd/SystemResources/X/ \
+    for f in $(find "${targetdir}/SystemFiles/FrontEnd/SystemResources/X" \
       -name "*Doc-${i}.png"); do
       f="$(basename "${f}")"
       g="$(echo ${f/Doc/} |tr '[:upper:]' '[:lower:]')"
