@@ -1,6 +1,6 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=touchpadtoggle-git
-pkgver=1.0_56_g5cf7551
+pkgver=1.0_80_gbc0453b
 pkgrel=1
 pkgdesc='Automatically enable/disable touchpad.'
 arch=('any')
@@ -22,6 +22,6 @@ package() {
   make DESTDIR="${pkgdir}" prefix="/usr" install
 
   # Remove unneeded files
-  rm -r "${pkgdir}/usr/share/"
+  rm -r "${pkgdir}/usr/share/doc/"
 }
 # vim:set ts=2 sw=2 et:
