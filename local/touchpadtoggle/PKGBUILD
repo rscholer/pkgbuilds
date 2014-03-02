@@ -1,6 +1,6 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=touchpadtoggle
-pkgver=2.0
+pkgver=2.0.1
 pkgrel=1
 pkgdesc='Automatically enable/disable touchpad.'
 arch=('any')
@@ -18,4 +18,4 @@ package() {
   rm -r "${pkgdir}/usr/share/doc/"
 }
 # vim:set ts=2 sw=2 et:
-md5sums=('b96077e2d28a5a33072acd7177684c64')
+md5sums=('fe69b471209b08a4ecf6bdd898af7566')
