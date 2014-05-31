@@ -1,7 +1,7 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=mint-backgrounds-nadia-extra
 pkgver=1.0
-pkgrel=4
+pkgrel=5
 pkgdesc="Extra desktop backgrounds for Linux Mint 14 Nadia"
 arch=('any')
 url="http://packages.linuxmint.com/pool/main/m/mint-backgrounds-nadia-extra"
