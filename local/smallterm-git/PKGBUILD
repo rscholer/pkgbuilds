@@ -1,0 +1,33 @@
+# Maintainer: Raphael Scholer <rscholer@gmx.de>
+pkgname=smallterm-git
+pkgver=0.2.r72.3b09848
+pkgrel=1
+pkgdesc="Lightweight GTK3+ terminal emulator"
+arch=('i686' 'x86_64')
+url="https://github.com/rscholer/${pkgname%-git}"
+license=('MIT')
+depends=(vte3)
+provides=("${pkgname%-git}")
+conflicts=("${pkgname%-git}")
+source=('FOLDER::VCS+URL#FRAGMENT')
+source=("git+file:///home/raphael/Documents/Code/Local/smallterm")
+md5sums=('SKIP')
+
+pkgver() {
+	cd "$srcdir/${pkgname%-git}"
+	printf "%s" "$(git describe --long | sed 's/\([^-]*-\)g/r\1/;s/-/./g')"
+}
+
+build() {
+	cd "$srcdir/${pkgname%-git}"
+	make
+}
+
+package() {
+	cd "$srcdir/${pkgname%-git}"
+	make DESTDIR="$pkgdir/" prefix="/usr" install
+
+	install -m 644 -D "COPYING" \
+	        "${pkgdir}/usr/share/licenses/${pkgname}/license.txt"
+}
+
