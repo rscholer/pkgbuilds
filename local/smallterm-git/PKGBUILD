@@ -1,6 +1,6 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=smallterm-git
-pkgver=0.2.r72.3b09848
+pkgver=1.0.1
 pkgrel=1
 pkgdesc="Lightweight GTK3+ terminal emulator"
 arch=('i686' 'x86_64')
@@ -15,7 +15,7 @@ md5sums=('SKIP')
 
 pkgver() {
 	cd "$srcdir/${pkgname%-git}"
-	printf "%s" "$(git describe --long | sed 's/\([^-]*-\)g/r\1/;s/-/./g')"
+	echo "$(git describe --always |sed 's#-#_#g;s#v##')"
 }
 
 build() {
