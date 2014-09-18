@@ -1,6 +1,6 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=smallterm-git
-pkgver=0.1_19_g3869a90
+pkgver=0.1_43_g10c8aff
 pkgrel=1
 pkgdesc="Lightweight GTK3+ terminal emulator"
 arch=('i686' 'x86_64')
