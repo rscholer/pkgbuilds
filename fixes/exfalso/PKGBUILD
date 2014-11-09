@@ -1,0 +1,46 @@
+# Maintainer: Michal Lisowski <lisu at riseup dot net>
+
+pkgname=exfalso
+pkgver=3.2.2
+pkgrel=1
+pkgdesc="GTK+ audio tag editor"
+arch=('any')
+url="http://code.google.com/p/quodlibet/"
+license=('GPL2')
+depends=('mutagen' 'gtk3' 'desktop-file-utils' 'hicolor-icon-theme' 'python2-gobject')
+optdepends=('cddb-py: for "CDDB Lookup" plugin'
+			'python2-musicbrainz2: for "MusicBrainz Lookup" plugin')
+makedepends=('intltool')
+conflicts=(qudlibet "${pkgname}-git")
+install=exfalso.install
+source=(https://bitbucket.org/lazka/quodlibet-files/raw/default/releases/quodlibet-${pkgver}.tar.gz)
+md5sums=('a89190e0929baa8b389fd9d3e4c3630b')
+
+prepare () {
+  cd "${srcdir}/quodlibet-${pkgver}"
+
+  # Use Python 2
+  sed -i 's|#! /usr/bin/env python|#!/usr/bin/env python2|' quodlibet/ext/songsmenu/replaygain.py
+}
+
+build () {
+  cd "${srcdir}/quodlibet-${pkgver}"
+
+  python2 setup.py build
+}
+
+package() {
+  cd "${srcdir}/quodlibet-${pkgver}"
+
+  python2 setup.py install --root="${pkgdir}"
+
+  # Remove Quod Libet
+  rm    "${pkgdir}"/usr/bin/quodlibet
+  rm    "${pkgdir}"/usr/share/appdata/quodlibet.appdata.xml
+  rm    "${pkgdir}"/usr/share/applications/quodlibet.desktop
+  rm -r "${pkgdir}"/usr/share/dbus-1/
+  rm -r "${pkgdir}"/usr/share/gnome-shell/
+  rm    "${pkgdir}"/usr/share/icons/hicolor/*/apps/quodlibet.*
+  rm    "${pkgdir}"/usr/share/man/man1/quodlibet.1
+  rm    "${pkgdir}"/usr/share/pixmaps/quodlibet.png
+}
