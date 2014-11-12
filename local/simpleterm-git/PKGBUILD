@@ -1,13 +1,13 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=simpleterm-git
-pkgver=0.1_99_g92348ae
+pkgver=0.1_102_gcacb559
 pkgrel=1
 pkgdesc="Simple GTK3+ terminal emulator"
 arch=('i686' 'x86_64')
 url="https://github.com/rscholer/${pkgname%-git}"
 license=('GPL3')
 makedepends=(asciidoc)
-depends=(python-gobject2 python-xdg vte3)
+depends=(python-gobject python-xdg vte3)
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
 source=('FOLDER::VCS+URL#FRAGMENT')
