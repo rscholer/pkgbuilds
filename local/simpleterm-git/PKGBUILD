@@ -10,9 +10,8 @@ makedepends=(asciidoc)
 depends=(python-gobject python-xdg vte3)
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
-source=('FOLDER::VCS+URL#FRAGMENT')
 source=("git+file:///home/raphael/Documents/Code/Local/simpleterm")
-md5sums=('SKIP')
+sha256sums=('SKIP')
 
 pkgver() {
 	cd "$srcdir/${pkgname%-git}"

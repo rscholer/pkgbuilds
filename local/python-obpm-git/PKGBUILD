@@ -11,7 +11,7 @@ depends=('python')
 conflicts=("${_pkgname}")
 makedepends=('python-setuptools')
 source=("git+file:///home/raphael/Documents/Code/Local/${_pkgname}")
-md5sums=('SKIP')
+sha256sums=('SKIP')
 
 pkgver() {
   cd "${_pkgname}"
