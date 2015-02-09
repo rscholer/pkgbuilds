@@ -1,0 +1,41 @@
+pkgname='dwt-git'
+pkgver=0.5.1.r51.gdd87af8
+pkgrel=1
+pkgdesc='Simple no-frills terminal emulator based on VTE with Tango palette'
+license='MIT'
+url='https://github.com/aperezdc/dwt'
+source=("${pkgname}::git+${url}.git"
+		"resize_hint.patch"
+		"tango_palette.patch")
+sha1sums=('SKIP'
+          '708d85adbdc654528f882d52cf479a8564a91f41'
+          'd8d6149f89ca75d617fef620ca030ffa4b6ac93b')
+arch=('i686' 'x86_64' 'arm')
+depends=('vte3')
+provides=('dwt')
+conflicts=('dwt')
+
+pkgver () {
+	cd "${srcdir}/${pkgname}"
+	git describe --long --tags | sed -r 's/([^-]*-g)/r\1/;s/-/./g'
+}
+
+prepare () {
+	cd "${srcdir}/${pkgname}"
+	patch < ../resize_hint.patch
+	patch < ../tango_palette.patch
+}
+
+build () {
+	cd "${srcdir}/${pkgname}"
+	CPPFLAGS='-DDWT_DEFAULT_FONT=\"Inconsolata\ 12\"'
+	CPPFLAGS="${CPPFLAGS} -DDWT_USE_HEADER_BAR=TRUE"
+	CPPFLAGS="${CPPFLAGS} -DDWT_USE_POPOVER=TRUE"
+	make PREFIX=/usr 
+}
+
+package () {
+	cd "${srcdir}/${pkgname}"
+	make PREFIX=/usr DESTDIR="${pkgdir}/" install
+	chmod 2755 "${pkgdir}/usr/man" "${pkgdir}/usr/man/man1"
+}
