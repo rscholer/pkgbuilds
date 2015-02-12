@@ -1,41 +1,46 @@
-pkgname='dwt-git'
-pkgver=0.5.1.r51.gdd87af8
+# Maintainer: Raphael Scholer <rscholer@gmx.de>
+pkgname=dwt-git
+_pkgname=${pkgname%-git}
+pkgver=0.5.1_51_gdd87af8
 pkgrel=1
 pkgdesc='Simple no-frills terminal emulator based on VTE with Tango palette'
-license='MIT'
-url='https://github.com/aperezdc/dwt'
-source=("${pkgname}::git+${url}.git"
+arch=('i686' 'x86_64')
+url="https://github.com/aperezdc/${_pkgname}"
+license=('MIT')
+depends=('vte3')
+makedepends=('python-docutils')
+source=("git+${url}"
+		"license.txt"
+		"install_path.patch"
 		"resize_hint.patch"
 		"tango_palette.patch")
 sha1sums=('SKIP'
+          'df4aaed196f4ed3362201dd3e688b746a89e5a73'
+          'd64576c7f1bbea55ded798874b78a5c0fdb9eb30'
           '708d85adbdc654528f882d52cf479a8564a91f41'
           'd8d6149f89ca75d617fef620ca030ffa4b6ac93b')
-arch=('i686' 'x86_64' 'arm')
-depends=('vte3')
-provides=('dwt')
-conflicts=('dwt')
 
-pkgver () {
-	cd "${srcdir}/${pkgname}"
-	git describe --long --tags | sed -r 's/([^-]*-g)/r\1/;s/-/./g'
+pkgver() {
+	cd "${srcdir}/${_pkgname}"
+	echo "$(git describe --tags --always |sed 's#-#_#g;s#v##')"
 }
 
-prepare () {
-	cd "${srcdir}/${pkgname}"
+prepare() {
+	cd "${_pkgname}"
+	patch < ../install_path.patch
 	patch < ../resize_hint.patch
 	patch < ../tango_palette.patch
 }
 
-build () {
-	cd "${srcdir}/${pkgname}"
-	CPPFLAGS='-DDWT_DEFAULT_FONT=\"Inconsolata\ 12\"'
-	CPPFLAGS="${CPPFLAGS} -DDWT_USE_HEADER_BAR=TRUE"
-	CPPFLAGS="${CPPFLAGS} -DDWT_USE_POPOVER=TRUE"
-	make PREFIX=/usr 
+build() {
+	cd "${_pkgname}"
+	make PREFIX=/usr
 }
 
-package () {
-	cd "${srcdir}/${pkgname}"
+package() {
+	install -m 755 -d "${pkgdir}/usr/share/licenses/${pkgname}"
+	install -m 664 -t "${pkgdir}/usr/share/licenses/${pkgname}" license.txt
+
+	cd "${_pkgname}"
 	make PREFIX=/usr DESTDIR="${pkgdir}/" install
-	chmod 2755 "${pkgdir}/usr/man" "${pkgdir}/usr/man/man1"
 }
