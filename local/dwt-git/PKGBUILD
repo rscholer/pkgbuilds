@@ -1,7 +1,7 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
 pkgname=dwt-git
 _pkgname=${pkgname%-git}
-pkgver=0.5.1_51_gdd87af8
+pkgver=0.5.1_52_g5473ae8
 pkgrel=1
 pkgdesc='Simple no-frills terminal emulator based on VTE with Tango palette'
 arch=('i686' 'x86_64')
@@ -10,26 +10,26 @@ license=('MIT')
 depends=('vte3')
 makedepends=('python-docutils')
 source=("git+${url}"
-		"license.txt"
 		"install_path.patch"
 		"resize_hint.patch"
 		"tango_palette.patch")
 sha1sums=('SKIP'
-          'df4aaed196f4ed3362201dd3e688b746a89e5a73'
           'd64576c7f1bbea55ded798874b78a5c0fdb9eb30'
           '708d85adbdc654528f882d52cf479a8564a91f41'
           'd8d6149f89ca75d617fef620ca030ffa4b6ac93b')
 
 pkgver() {
-	cd "${srcdir}/${_pkgname}"
+	cd "${_pkgname}"
 	echo "$(git describe --tags --always |sed 's#-#_#g;s#v##')"
 }
 
 prepare() {
 	cd "${_pkgname}"
-	patch < ../install_path.patch
-	patch < ../resize_hint.patch
-	patch < ../tango_palette.patch
+	for p in "${source[@]}"; do
+		if [[ "${p}" == *.patch ]]; then
+			patch -Np1 < "../${p}"
+		fi
+	done
 }
 
 build() {
@@ -38,9 +38,10 @@ build() {
 }
 
 package() {
-	install -m 755 -d "${pkgdir}/usr/share/licenses/${pkgname}"
-	install -m 664 -t "${pkgdir}/usr/share/licenses/${pkgname}" license.txt
-
 	cd "${_pkgname}"
 	make PREFIX=/usr DESTDIR="${pkgdir}/" install
+
+	install -m 755 -d "${pkgdir}/usr/share/licenses/${pkgname}"
+	install -m 664 -t "${pkgdir}/usr/share/licenses/${pkgname}" COPYING
+
 }
