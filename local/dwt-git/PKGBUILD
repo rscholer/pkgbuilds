@@ -1,13 +1,14 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
-pkgname=dwt-git
-_pkgname=${pkgname%-git}
+_pkgname=dwt
+pkgname=${_pkgname}-git
 pkgver=0.5.1_52_g5473ae8
-pkgrel=1
+pkgrel=2
 pkgdesc='Simple no-frills terminal emulator based on VTE with Tango palette'
 arch=('i686' 'x86_64')
 url="https://github.com/aperezdc/${_pkgname}"
 license=('MIT')
 depends=('vte3')
+conflicts=("${_pkgname}")
 makedepends=('python-docutils')
 source=("git+${url}"
 		"install_path.patch"
@@ -25,11 +26,9 @@ pkgver() {
 
 prepare() {
 	cd "${_pkgname}"
-	for p in "${source[@]}"; do
-		if [[ "${p}" == *.patch ]]; then
-			patch -Np1 < "../${p}"
-		fi
-	done
+	patch -Np1 < ../install_path.patch
+	patch -Np1 < ../resize_hint.patch
+	patch -Np1 < ../tango_palette.patch
 }
 
 build() {
@@ -43,5 +42,4 @@ package() {
 
 	install -m 755 -d "${pkgdir}/usr/share/licenses/${pkgname}"
 	install -m 664 -t "${pkgdir}/usr/share/licenses/${pkgname}" COPYING
-
 }

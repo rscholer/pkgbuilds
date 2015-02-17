@@ -1,15 +1,15 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
-pkgname=elementary-xfce-icons-git
 _pkgname=elementary-xfce
+pkgname=${_pkgname}-icons-git
 pkgver=0.5_3_g045a5a3
-pkgrel=2
+pkgrel=3
 pkgdesc='Elementary icon-theme with improved Xfce support'
 arch=('any')
-url='https://github.com/shimmerproject/elementary-xfce'
+url="https://github.com/shimmerproject/${_pkgname}"
 license=('GPL2')
 makedepends=('git')
 depends=('adwaita-icon-theme' 'gnome-icon-theme')
-conflicts=('elementary-xfce-icons')
+conflicts=("${_pkgname}-icons")
 options=(!strip)
 install="${pkgname}.install"
 source=("git+${url}")
