@@ -1,30 +1,30 @@
 # Maintainer: Raphael Scholer <rscholer@gmx.de>
-pkgname=simpleterm-git
-pkgver=0.1_102_gcacb559
+_pkgname=simpleterm
+pkgname=${_pkgname}-git
+pkgver=925e50a
 pkgrel=1
 pkgdesc="Simple GTK3+ terminal emulator"
-arch=('i686' 'x86_64')
+arch=('any')
 url="https://github.com/rscholer/${pkgname%-git}"
 license=('GPL3')
-makedepends=(asciidoc)
-depends=(python-gobject python-xdg vte3)
-provides=("${pkgname%-git}")
-conflicts=("${pkgname%-git}")
-source=("git+file:///home/raphael/Documents/Code/Local/simpleterm")
+makedepends=(python-docutils)
+depends=(python-gobject vte3)
+conflicts=("${_pkgname}")
+source=("git+file:///home/raphael/Documents/Code/Local/${_pkgname}")
 sha256sums=('SKIP')
 
 pkgver() {
-	cd "$srcdir/${pkgname%-git}"
+	cd "${_pkgname}"
 	echo "$(git describe --always |sed 's#-#_#g;s#v##')"
 }
 
 build() {
-	cd "$srcdir/${pkgname%-git}"
-	make
+	cd "${_pkgname}"
+	make prefix="/usr"
 }
 
 package() {
-	cd "$srcdir/${pkgname%-git}"
-	make DESTDIR="$pkgdir/" prefix="/usr" install
+	cd "${_pkgname}"
+	make DESTDIR="${pkgdir}/" prefix="/usr" install
 }
 
