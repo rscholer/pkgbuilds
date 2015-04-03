@@ -1,4 +1,4 @@
-# Maintainer: Raphael Scholer <rscholer@gmx.de>
+# Maintainer: Raphael Scholer <rascholer@gmail.com>
 _pkgname=xfce4-kbdleds-plugin
 pkgname=${_pkgname}-git
 pkgver=0.0.6_5_g83e40e0

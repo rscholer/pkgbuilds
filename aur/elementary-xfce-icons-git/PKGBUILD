@@ -1,4 +1,4 @@
-# Maintainer: Raphael Scholer <rscholer@gmx.de>
+# Maintainer: Raphael Scholer <rascholer@gmail.com>
 _pkgname=elementary-xfce
 pkgname=${_pkgname}-icons-git
 pkgver=0.5_3_g045a5a3

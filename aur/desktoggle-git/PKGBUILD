@@ -1,4 +1,4 @@
-# Maintainer: Raphael Scholer <rscholer@gmx.de>
+# Maintainer: Raphael Scholer <rascholer@gmail.com>
 _pkgname=desktoggle
 pkgname=${_pkgname}-git
 pkgver=1.4_7_gabb04ff
