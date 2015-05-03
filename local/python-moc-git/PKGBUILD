@@ -1,7 +1,7 @@
 # Maintainer: Raphael Scholer <rascholer@gmail.com>
 _pkgname='python-moc'
 pkgname="${_pkgname}-git"
-pkgver=ee8df2d
+pkgver=49d8762
 pkgrel=1
 pkgdesc="Python bindings for Music On Console"
 arch=('any')
