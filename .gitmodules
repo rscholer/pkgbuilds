@@ -22,9 +22,6 @@
 [submodule "aur/desktoggle-git"]
 	path = aur/desktoggle-git
 	url = ssh://aur4.archlinux.org/desktoggle-git.git
-[submodule "aur/elementary-xfce-icons"]
-	path = aur/elementary-xfce-icons
-	url = ssh://aur4.archlinux.org/elementary-xfce-icons.git
 [submodule "aur/elementary-xfce-icons-git"]
 	path = aur/elementary-xfce-icons-git
 	url = ssh://aur4.archlinux.org/elementary-xfce-icons-git.git
