@@ -1,13 +1,13 @@
 # Maintainer: Raphael Scholer <rascholer@gmail.com>
 _pkgname=simpleterm
 pkgname=${_pkgname}-git
-pkgver=1.0.1_11_g2c8eda5
+pkgver=1.0.1_23_g5844722
 pkgrel=1
 pkgdesc="Simple GTK3+ terminal emulator"
 arch=('any')
 url="https://github.com/rscholer/${pkgname%-git}"
 license=('GPL3')
-depends=(python-gobject vte3-glade-catalogue)
+depends=(python-gobject)
 conflicts=("${_pkgname}")
 source=("git+file:///home/raphael/Documents/Code/Local/${_pkgname}")
 sha256sums=('SKIP')
