@@ -31,3 +31,6 @@
 [submodule "aur/xfce4-kbdleds-plugin-git"]
 	path = aur/xfce4-kbdleds-plugin-git
 	url = ssh://aur4.archlinux.org/xfce4-kbdleds-plugin-git.git
+[submodule "aur/libreoffice-style-elementary"]
+	path = aur/libreoffice-style-elementary
+	url = ssh://aur4.archlinux.org/libreoffice-style-elementary.git
