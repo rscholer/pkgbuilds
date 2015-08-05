@@ -34,3 +34,6 @@
 [submodule "aur/libreoffice-style-elementary"]
 	path = aur/libreoffice-style-elementary
 	url = ssh://aur4.archlinux.org/libreoffice-style-elementary.git
+[submodule "aur/python-pep8-naming"]
+	path = aur/python-pep8-naming
+	url = https://aur4.archlinux.org/python-pep8-naming
