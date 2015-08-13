@@ -25,12 +25,6 @@
 [submodule "aur/elementary-xfce-icons-git"]
 	path = aur/elementary-xfce-icons-git
 	url = ssh://aur.archlinux.org/elementary-xfce-icons-git.git
-[submodule "aur/xfce4-kbdleds-plugin"]
-	path = aur/xfce4-kbdleds-plugin
-	url = ssh://aur.archlinux.org/xfce4-kbdleds-plugin.git
-[submodule "aur/xfce4-kbdleds-plugin-git"]
-	path = aur/xfce4-kbdleds-plugin-git
-	url = ssh://aur.archlinux.org/xfce4-kbdleds-plugin-git.git
 [submodule "aur/libreoffice-style-elementary"]
 	path = aur/libreoffice-style-elementary
 	url = ssh://aur.archlinux.org/libreoffice-style-elementary.git
