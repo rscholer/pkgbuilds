@@ -1,6 +1,3 @@
-[submodule "aur/vte3-glade-catalogue"]
-	path = aur/vte3-glade-catalogue
-	url = ssh://aur.archlinux.org/vte3-glade-catalogue.git
 [submodule "aur/libreoffice-style-elementary-git"]
 	path = aur/libreoffice-style-elementary-git
 	url = ssh://aur.archlinux.org/libreoffice-style-elementary-git.git
