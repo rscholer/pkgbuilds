@@ -1,18 +1,6 @@
 [submodule "aur/libreoffice-style-elementary-git"]
 	path = aur/libreoffice-style-elementary-git
 	url = ssh://aur.archlinux.org/libreoffice-style-elementary-git.git
-[submodule "aur/python-obpm"]
-	path = aur/python-obpm
-	url = ssh://aur.archlinux.org/python-obpm.git
-[submodule "aur/python-moc"]
-	path = aur/python-moc
-	url = ssh://aur.archlinux.org/python-moc.git
-[submodule "aur/python-moc-git"]
-	path = aur/python-moc-git
-	url = ssh://aur.archlinux.org/python-moc-git.git
-[submodule "aur/python-obpm-git"]
-	path = aur/python-obpm-git
-	url = ssh://aur.archlinux.org/python-obpm-git.git
 [submodule "aur/desktoggle"]
 	path = aur/desktoggle
 	url = ssh://aur.archlinux.org/desktoggle.git
