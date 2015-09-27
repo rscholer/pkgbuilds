@@ -15,4 +15,4 @@
 	url = ssh://aur.archlinux.org/libreoffice-style-elementary.git
 [submodule "aur/python-pep8-naming"]
 	path = aur/python-pep8-naming
-	url = https://aur.archlinux.org/python-pep8-naming
+	url = ssh://aur.archlinux.org/python-pep8-naming.git
