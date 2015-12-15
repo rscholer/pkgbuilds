@@ -22,6 +22,6 @@
 [submodule "aur/pep257"]
 	path = aur/pep257
 	url = ssh://aur.archlinux.org/pep257.git
-[submodule "flake8-pep257"]
-	path = flake8-pep257
+[submodule "aur/flake8-pep257"]
+	path = aur/flake8-pep257
 	url = ssh://aur@aur.archlinux.org/flake8-pep257.git
