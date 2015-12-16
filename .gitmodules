@@ -13,15 +13,3 @@
 [submodule "aur/libreoffice-style-elementary"]
 	path = aur/libreoffice-style-elementary
 	url = ssh://aur.archlinux.org/libreoffice-style-elementary.git
-[submodule "aur/python-pep8-naming"]
-	path = aur/python-pep8-naming
-	url = ssh://aur.archlinux.org/python-pep8-naming.git
-[submodule "aur/python-pep8-naming-git"]
-	path = aur/python-pep8-naming-git
-	url = ssh://aur.archlinux.org/python-pep8-naming-git.git
-[submodule "aur/pep257"]
-	path = aur/pep257
-	url = ssh://aur.archlinux.org/pep257.git
-[submodule "aur/flake8-pep257"]
-	path = aur/flake8-pep257
-	url = ssh://aur@aur.archlinux.org/flake8-pep257.git
