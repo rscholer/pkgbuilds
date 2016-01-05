@@ -8,10 +8,9 @@ arch=('any')
 url="https://github.com/rscholer/${pkgname%-git}"
 license=('GPL3')
 makedepends=(python-docutils)
-depends=(python-gobject vte3)
+depends=(python-gobject vte3-glade-catalouge)
 conflicts=("${_pkgname}")
 source=("git+file:///home/raphael/Documents/Code/Local/${_pkgname}")
-source=("git+$url")
 sha256sums=('SKIP')
 
 pkgver() {
