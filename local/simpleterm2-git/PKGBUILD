@@ -2,13 +2,13 @@
 _pkgname=simpleterm2
 pkgname=${_pkgname}-git
 pkgver=0.1.1.r14.g0f279e0
-pkgrel=1
+pkgrel=2
 pkgdesc="Simple GTK3+ terminal emulator"
 arch=('any')
 url="https://github.com/rscholer/${pkgname%-git}"
 license=('GPL3')
 makedepends=(python-docutils)
-depends=(python-gobject vte3-glade-catalogue)
+depends=(python-gobject vte3)
 conflicts=("${_pkgname}")
 source=("git+file:///home/raphael/Documents/Code/Local/${_pkgname}")
 sha256sums=('SKIP')
