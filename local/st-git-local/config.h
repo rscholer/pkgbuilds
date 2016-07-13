@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char font[] = "Droid Sans Mono:size=10";
+static char font[] = "Source Code Pro:size=10:antialias=true:hinting=true";
 static int borderpx = 2;
 #define histsize 1000
 

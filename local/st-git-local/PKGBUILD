@@ -17,7 +17,7 @@ source=('git://git.suckless.org/st'
 	'config.h'
 	'scrollback.diff')
 sha1sums=('SKIP'
-          '67eb8f870f868d90a5c89c0d50f3ae0d0e18b7eb'
+          '2f7cf3d5c3884aff7a2f71b15ad9e8e11667d64d'
           'dc5cebde897e98e4b2d309a4da4e8db82435a516')
 
 provides=("${_pkgname}" "${pkgname}-git")
