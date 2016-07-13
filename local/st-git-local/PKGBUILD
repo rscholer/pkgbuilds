@@ -14,10 +14,10 @@ license=('MIT')
 depends=('libxft')
 makedepends=('ncurses' 'libxext' 'git')
 source=('git://git.suckless.org/st'
-	'config.h'
-	'scrollback.diff')
+        'config.diff'
+        'scrollback.diff')
 sha1sums=('SKIP'
-          '2f7cf3d5c3884aff7a2f71b15ad9e8e11667d64d'
+          '5bb153f95e83e6a3fc849e42b70398fba83ce849'
           'dc5cebde897e98e4b2d309a4da4e8db82435a516')
 
 provides=("${_pkgname}" "${pkgname}-git")
@@ -39,13 +39,16 @@ prepare() {
 		-e 's/_BSD_SOURCE/_DEFAULT_SOURCE/' \
 		-i config.mk
 
+	# Apply patches
 	patch -Np1 <"${srcdir}/scrollback.diff"
+
+	# Apply changes to configuration file
+	cp "config.def.h" "config.h"
+	patch -N <"${srcdir}/config.diff"
 }
 
 build() {
 	cd "${_pkgname}"
-
-	cp "${srcdir}/config.h" .
 
 	make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
 }
