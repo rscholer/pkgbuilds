@@ -32,12 +32,16 @@ pkgver() {
 prepare() {
 	cd "${_pkgname}"
 
+	# Use Flags as defined in makepkg.conf
 	sed \
 		-e 's/CFLAGS =/CFLAGS +=/g' \
 		-e 's/CPPFLAGS =/CPPFLAGS +=/g' \
 		-e 's/LDFLAGS =/LDFLAGS +=/g' \
 		-e 's/_BSD_SOURCE/_DEFAULT_SOURCE/' \
 		-i config.mk
+
+	# Do not build terminfo descriptions. ncurses distributes them already.
+	sed '/@tic/d' -i Makefile
 
 	# Apply patches
 	patch -Np1 <"${srcdir}/scrollback.diff"
