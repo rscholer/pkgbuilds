@@ -47,8 +47,8 @@ prepare() {
 	patch -Np1 <"${srcdir}/scrollback.diff"
 
 	# Apply changes to configuration file
-	cp "config.def.h" "config.h"
-	patch -N <"${srcdir}/config.diff"
+	cp 'config.def.h' 'config.h'
+	patch -Np1 <"${srcdir}/config.diff"
 }
 
 build() {
