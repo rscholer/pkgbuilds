@@ -15,8 +15,11 @@ license=('MIT')
 depends=('libxft')
 makedepends=('ncurses' 'libxext' 'git')
 source=('git://git.suckless.org/st'
-        'config.h')
-sha1sums=('SKIP' 'SKIP')
+        'config.h'
+		'scrollback.diff')
+sha1sums=('SKIP'
+          '67eb8f870f868d90a5c89c0d50f3ae0d0e18b7eb'
+          'dc5cebde897e98e4b2d309a4da4e8db82435a516')
 
 provides=("${_pkgname}" "${pkgname_upstream}")
 conflicts=("${_pkgname}" "${pkgname_upstream}")
