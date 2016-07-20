@@ -11,8 +11,8 @@ pkgdesc='Simple virtual terminal emulator for X'
 url='http://git.suckless.org/st/'
 arch=('i686' 'x86_64')
 license=('MIT')
-depends=('libxft')
-makedepends=('ncurses' 'libxext' 'git')
+depends=('libxft' 'ncurses')
+makedepends=('git')
 source=('git://git.suckless.org/st'
         'config.diff'
         'scrollback.diff')
