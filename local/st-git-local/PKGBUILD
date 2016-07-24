@@ -24,44 +24,45 @@ provides=("${_pkgname}" "${pkgname}-git")
 conflicts=("${_pkgname}" "${pkgname}-git")
 
 pkgver() {
-	cd "${_pkgname}"
+  cd "${_pkgname}"
 
-	git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 prepare() {
-	cd "${_pkgname}"
+  cd "${_pkgname}"
 
-	# Use Flags as defined in makepkg.conf
-	sed \
-		-e 's/CFLAGS =/CFLAGS +=/g' \
-		-e 's/CPPFLAGS =/CPPFLAGS +=/g' \
-		-e 's/LDFLAGS =/LDFLAGS +=/g' \
-		-e 's/_BSD_SOURCE/_DEFAULT_SOURCE/' \
-		-i config.mk
+  # Use Flags as defined in makepkg.conf
+  sed \
+    -e 's/CFLAGS =/CFLAGS +=/g' \
+    -e 's/CPPFLAGS =/CPPFLAGS +=/g' \
+    -e 's/LDFLAGS =/LDFLAGS +=/g' \
+    -e 's/_BSD_SOURCE/_DEFAULT_SOURCE/' \
+    -i config.mk
 
-	# Do not build terminfo descriptions. ncurses distributes them already.
-	sed '/@tic/d' -i Makefile
+  # Do not build terminfo descriptions. ncurses distributes them already.
+  sed '/@tic/d' -i Makefile
 
-	# Apply patches
-	patch -Np1 <"${srcdir}/scrollback.diff"
+  # Apply patches
+  patch -Np1 <"${srcdir}/scrollback.diff"
 
-	# Apply changes to configuration file
-	cp 'config.def.h' 'config.h'
-	patch -Np1 <"${srcdir}/config.diff"
+  # Apply changes to configuration file
+  cp 'config.def.h' 'config.h'
+  patch -Np1 <"${srcdir}/config.diff"
 }
 
 build() {
-	cd "${_pkgname}"
+  cd "${_pkgname}"
 
-	make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+  make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
 }
 
 package() {
-	cd "${_pkgname}"
+  cd "${_pkgname}"
 
-	make PREFIX=/usr DESTDIR="${pkgdir}" install
+  make PREFIX=/usr DESTDIR="${pkgdir}" install
 
-	install -m 755 -d "${pkgdir}/usr/share/licenses/${pkgname}"
-	install -m 644 -t "${pkgdir}/usr/share/licenses/${pkgname}" LICENSE
+  install -m 755 -d "${pkgdir}/usr/share/licenses/${pkgname}"
+  install -m 644 -t "${pkgdir}/usr/share/licenses/${pkgname}" LICENSE
 }
+# vim:set ts=2 sw=2 et:
