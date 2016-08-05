@@ -1,5 +1,5 @@
 diff --git a/config.def.h b/config.def.h
-index 9e61010..0bfa5aa 100644
+index b41747f..eae969e 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -7,6 +7,7 @@
@@ -10,7 +10,7 @@ index 9e61010..0bfa5aa 100644
  
  /*
   * What program is execed by st depends of these precedence rules:
-@@ -157,6 +158,8 @@ static Shortcut shortcuts[] = {
+@@ -172,6 +173,8 @@ static Shortcut shortcuts[] = {
  	{ MODKEY|ShiftMask,     XK_C,           clipcopy,       {.i =  0} },
  	{ MODKEY|ShiftMask,     XK_V,           clippaste,      {.i =  0} },
  	{ MODKEY,               XK_Num_Lock,    numlock,        {.i =  0} },
