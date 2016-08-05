@@ -1,27 +1,26 @@
---- a/config.h	2016-08-05 13:52:10.975118359 +0200
-+++ b/config.h	2016-08-05 13:53:11.512678420 +0200
-@@ -5,9 +5,9 @@
+diff --git a/config.h b/config.h
+index 34ebb44..424ab27 100644
+--- a/config.h
++++ b/config.h
+@@ -5,7 +5,7 @@
   *
   * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
   */
 -static char font[] = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
 +static char font[] = "Source Code Pro:size=10:antialias=true:hinting=true";
  static int borderpx = 2;
--#define histsize 2000
-+#define histsize 1000
-
- /*
-  * What program is execed by st depends of these precedence rules:
-@@ -33,7 +33,7 @@
+ #define histsize 2000
+ 
+@@ -33,7 +33,7 @@ static float chscale = 1.0;
   *
   * More advanced example: " `'\"()[]{}"
   */
 -static char worddelimiters[] = " ";
 +static char worddelimiters[] = " '`\"()[]{}<>|";
-
+ 
  /* selection timeouts (in milliseconds) */
  static unsigned int doubleclicktimeout = 300;
-@@ -86,30 +86,30 @@
+@@ -86,30 +86,30 @@ static unsigned int tabspaces = 8;
  /* Terminal colors (16 first used in escape sequence) */
  static const char *colorname[] = {
  	/* 8 normal colors */
@@ -41,7 +40,7 @@
 +	"#757550507b7b",
 +	"#060698209a9a",
 +	"#d3d3d7d7cfcf",
-
+ 
  	/* 8 bright colors */
 -	"gray50",
 -	"red",
@@ -59,18 +58,18 @@
 +	"#adad7f7fa8a8",
 +	"#3434e2e2e2e2",
 +	"#eeeeeeeeecec",
-
+ 
  	[255] = 0,
-
+ 
  	/* more colors can be added after 255 to use with DefaultXX */
 -	"#cccccc",
 -	"#555555",
 +	"#ffffff",
 +	"#000000",
  };
-
-
-@@ -117,8 +117,8 @@
+ 
+ 
+@@ -117,8 +117,8 @@ static const char *colorname[] = {
   * Default colors (colorname index)
   * foreground, background, cursor, reverse cursor
   */
@@ -80,18 +79,18 @@
 +static unsigned int defaultbg = 257;
  static unsigned int defaultcs = 256;
  static unsigned int defaultrcs = 257;
-
-@@ -129,7 +129,7 @@
+ 
+@@ -129,7 +129,7 @@ static unsigned int defaultrcs = 257;
   * 6: Bar ("|")
   * 7: Snowman ("☃")
   */
 -static unsigned int cursorshape = 2;
 +static unsigned int cursorshape = 4;
-
+ 
  /*
   * Default colour and shape of the mouse cursor
-@@ -158,8 +158,8 @@
-
+@@ -158,8 +158,8 @@ static MouseShortcut mshortcuts[] = {
+ 
  static MouseKey mkeys[] = {
  	/* button               mask            function        argument */
 -	{ Button4,              ShiftMask,      kscrollup,      {.i =  1} },
@@ -99,5 +98,5 @@
 +	{ Button4,              XK_NO_MOD,      kscrollup,      {.i =  1} },
 +	{ Button5,              XK_NO_MOD,      kscrolldown,    {.i =  1} },
  };
-
+ 
  /* Internal keyboard shortcuts. */
