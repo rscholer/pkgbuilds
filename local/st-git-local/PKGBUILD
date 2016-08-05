@@ -15,10 +15,14 @@ depends=('libxft' 'ncurses' 'xorg-fonts-misc')
 makedepends=('git')
 source=('git://git.suckless.org/st'
         'config.diff'
-        'scrollback.diff')
+        'scrollback.diff'
+        'scrollback-mouse.diff'
+        'scrollback-mouse-altscreen.diff')
 sha1sums=('SKIP'
-          '5bb153f95e83e6a3fc849e42b70398fba83ce849'
-          'f42d0b0ae25491792acbc6b3ffab025027957a13')
+          '3010965e7f28f4e52111a755cf9ef6b82b551008'
+          'f42d0b0ae25491792acbc6b3ffab025027957a13'
+          'cdeaf224e828c3acb6daba25de1b405092666e8e'
+          'ab73cc6f01b639e1b78119f9ba2844aa9b2aaac5')
 
 provides=("${_pkgname}" "${pkgname}-git")
 conflicts=("${_pkgname}" "${pkgname}-git")
@@ -45,6 +49,8 @@ prepare() {
 
   # Apply patches
   patch -Np1 <"${srcdir}/scrollback.diff"
+  patch -Np1 <"${srcdir}/scrollback-mouse.diff"
+  patch -Np1 <"${srcdir}/scrollback-mouse-altscreen.diff"
 
   # Apply changes to configuration file
   cp 'config.def.h' 'config.h'

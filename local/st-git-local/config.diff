@@ -1,5 +1,5 @@
---- a/config.h	2016-07-13 22:58:47.901380463 +0200
-+++ b/config.h	2016-07-13 23:07:04.927524629 +0200
+--- a/config.h	2016-08-05 13:52:10.975118359 +0200
++++ b/config.h	2016-08-05 13:53:11.512678420 +0200
 @@ -5,9 +5,9 @@
   *
   * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
@@ -21,7 +21,7 @@
 
  /* selection timeouts (in milliseconds) */
  static unsigned int doubleclicktimeout = 300;
-@@ -71,30 +71,30 @@
+@@ -86,30 +86,30 @@
  /* Terminal colors (16 first used in escape sequence) */
  static const char *colorname[] = {
  	/* 8 normal colors */
@@ -70,7 +70,7 @@
  };
 
 
-@@ -102,8 +102,8 @@
+@@ -117,8 +117,8 @@
   * Default colors (colorname index)
   * foreground, background, cursor, reverse cursor
   */
@@ -81,7 +81,7 @@
  static unsigned int defaultcs = 256;
  static unsigned int defaultrcs = 257;
 
-@@ -114,7 +114,7 @@
+@@ -129,7 +129,7 @@
   * 6: Bar ("|")
   * 7: Snowman ("☃")
   */
@@ -90,3 +90,14 @@
 
  /*
   * Default colour and shape of the mouse cursor
+@@ -158,8 +158,8 @@
+
+ static MouseKey mkeys[] = {
+ 	/* button               mask            function        argument */
+-	{ Button4,              ShiftMask,      kscrollup,      {.i =  1} },
+-	{ Button5,              ShiftMask,      kscrolldown,    {.i =  1} },
++	{ Button4,              XK_NO_MOD,      kscrollup,      {.i =  1} },
++	{ Button5,              XK_NO_MOD,      kscrolldown,    {.i =  1} },
+ };
+
+ /* Internal keyboard shortcuts. */
