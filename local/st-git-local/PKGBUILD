@@ -5,7 +5,7 @@
 
 pkgname=st-git-local
 _pkgname=st
-pkgver=0.6.r76.g308bfbf
+pkgver=0.7.r1.g023225e
 pkgrel=1
 pkgdesc='Simple virtual terminal emulator for X'
 url='http://git.suckless.org/st/'
@@ -53,7 +53,7 @@ prepare() {
   patch -Np1 <"${srcdir}/scrollback-mouse-altscreen.diff"
 
   # Apply changes to configuration file
-  cp 'config.def.h' 'config.h'
+  make config.h
   patch -Np1 <"${srcdir}/config.diff"
 }
 
