@@ -6,7 +6,7 @@
 pkgname=st-git-local
 _pkgname=st
 pkgver=0.7.r1.g023225e
-pkgrel=1
+pkgrel=2
 pkgdesc='Simple virtual terminal emulator for X'
 url='http://git.suckless.org/st/'
 arch=('i686' 'x86_64')
@@ -41,7 +41,6 @@ prepare() {
     -e 's/CFLAGS =/CFLAGS +=/g' \
     -e 's/CPPFLAGS =/CPPFLAGS +=/g' \
     -e 's/LDFLAGS =/LDFLAGS +=/g' \
-    -e 's/_BSD_SOURCE/_DEFAULT_SOURCE/' \
     -i config.mk
 
   # Do not build terminfo descriptions. ncurses distributes them already.
