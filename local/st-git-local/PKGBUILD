@@ -5,24 +5,25 @@
 
 pkgname=st-git-local
 _pkgname=st
-pkgver=0.7.r1.g023225e
+pkgver=0.7.r5.gf739843
 pkgrel=2
 pkgdesc='Simple virtual terminal emulator for X'
-url='http://git.suckless.org/st/'
+url='http://st.suckless.org'
 arch=('i686' 'x86_64')
 license=('MIT')
 depends=('libxft')
 makedepends=('git')
+_patchurl="${url}/patches"
 source=('git://git.suckless.org/st'
-        'config.diff'
-        'scrollback.diff'
-        'scrollback-mouse.diff'
-        'scrollback-mouse-altscreen.diff')
+        "scrollback.diff::${_patchurl}/${_pkgname}-scrollback-20160924-f739843.diff"
+        "scrollback-mouse.diff::${_patchurl}/${_pkgname}-scrollback-mouse-20161020-6e79e83.diff"
+        "scrollback-mouse-altscreen.diff::${_patchurl}/${_pkgname}-scrollback-mouse-altscreen-20161020-6e79e83.diff"
+        'config.diff')
 sha1sums=('SKIP'
-          'eba73533f7da9d676da2820baa9b6b990141a50f'
-          'f42d0b0ae25491792acbc6b3ffab025027957a13'
-          'cdeaf224e828c3acb6daba25de1b405092666e8e'
-          'ab73cc6f01b639e1b78119f9ba2844aa9b2aaac5')
+          '4b155f6fc15ba994d8e13f79f51a6f14e6308996'
+          '88b85b0f3dff3606c5c791ab5752fdfb36727c7c'
+          'a891faa40d51641dc3f54d472cdcfa8fa83e6fc7'
+          'ebe82517b240d09d8ce0bb5bd74db6377b7adb87')
 
 provides=("${_pkgname}" "${pkgname}-git")
 conflicts=("${_pkgname}" "${pkgname}-git")
