@@ -1,41 +1,32 @@
 # Maintainer: Raphael Scholer <rascholer@gmail.com>
-# Contributor: mar77i <mysatyre at gmail dot com>
-# Contributor: Gaetan Bisson <bisson@archlinux.org>
-# Contributor: Scytrin dai Kinthra <scytrin@gmail.com>
 
-pkgname=st-git-local
-_pkgname=st
-pkgver=0.7.r5.gf739843
-pkgrel=2
+_pkgname='st'
+pkgname='st-local'
+pkgver=0.7
+pkgrel=1
 pkgdesc='Simple virtual terminal emulator for X'
-url='http://st.suckless.org'
+url="http://${_pkgname}.suckless.org"
 arch=('i686' 'x86_64')
 license=('MIT')
 depends=('libxft')
 makedepends=('git')
 _patchurl="${url}/patches"
-source=('git://git.suckless.org/st'
-        "scrollback.diff::${_patchurl}/${_pkgname}-scrollback-20160924-f739843.diff"
+source=("http://dl.suckless.org/${_pkgname}/${_pkgname}-${pkgver}.tar.gz"
+        "scrollback.diff::${_patchurl}/${_pkgname}-scrollback-${pkgver}.diff"
         "scrollback-mouse.diff::${_patchurl}/${_pkgname}-scrollback-mouse-20161020-6e79e83.diff"
         "scrollback-mouse-altscreen.diff::${_patchurl}/${_pkgname}-scrollback-mouse-altscreen-20161020-6e79e83.diff"
         'config.diff')
-sha1sums=('SKIP'
-          '4b155f6fc15ba994d8e13f79f51a6f14e6308996'
+sha1sums=('358bca5bfc6ee85352dcd4f45f13f78474e5de42'
+          'f42d0b0ae25491792acbc6b3ffab025027957a13'
           '88b85b0f3dff3606c5c791ab5752fdfb36727c7c'
           'a891faa40d51641dc3f54d472cdcfa8fa83e6fc7'
           'ebe82517b240d09d8ce0bb5bd74db6377b7adb87')
 
-provides=("${_pkgname}" "${pkgname}-git")
-conflicts=("${_pkgname}" "${pkgname}-git")
-
-pkgver() {
-  cd "${_pkgname}"
-
-  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
-}
+provides=("${_pkgname}")
+conflicts=("${_pkgname}" "${_pkgname}-git")
 
 prepare() {
-  cd "${_pkgname}"
+  cd "${_pkgname}-${pkgver}"
 
   # Use Flags as defined in makepkg.conf
   sed \
@@ -52,19 +43,19 @@ prepare() {
   patch -Np1 <"${srcdir}/scrollback-mouse.diff"
   patch -Np1 <"${srcdir}/scrollback-mouse-altscreen.diff"
 
-  # Apply changes to configuration file
+  # # Apply changes to configuration file
   make config.h
   patch -Np1 <"${srcdir}/config.diff"
 }
 
 build() {
-  cd "${_pkgname}"
+  cd "${_pkgname}-${pkgver}"
 
   make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
 }
 
 package() {
-  cd "${_pkgname}"
+  cd "${_pkgname}-${pkgver}"
 
   make PREFIX=/usr DESTDIR="${pkgdir}" install
 
