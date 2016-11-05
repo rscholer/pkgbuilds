@@ -13,3 +13,6 @@
 [submodule "aur/libreoffice-style-elementary"]
 	path = aur/libreoffice-style-elementary
 	url = ssh://aur.archlinux.org/libreoffice-style-elementary.git
+[submodule "aur/mp3diags"]
+	path = aur/mp3diags
+	url = ssh://aur@aur.archlinux.org/mp3diags.git
