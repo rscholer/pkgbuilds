@@ -13,13 +13,9 @@ makedepends=('git')
 _patchurl="${url}/patches"
 source=("http://dl.suckless.org/${_pkgname}/${_pkgname}-${pkgver}.tar.gz"
         "scrollback.diff::${_patchurl}/${_pkgname}-scrollback-${pkgver}.diff"
-        "scrollback-mouse.diff::${_patchurl}/${_pkgname}-scrollback-mouse-20161020-6e79e83.diff"
-        "scrollback-mouse-altscreen.diff::${_patchurl}/${_pkgname}-scrollback-mouse-altscreen-20161020-6e79e83.diff"
         'config.diff')
 sha1sums=('358bca5bfc6ee85352dcd4f45f13f78474e5de42'
           'f42d0b0ae25491792acbc6b3ffab025027957a13'
-          '88b85b0f3dff3606c5c791ab5752fdfb36727c7c'
-          'a891faa40d51641dc3f54d472cdcfa8fa83e6fc7'
           'ebe82517b240d09d8ce0bb5bd74db6377b7adb87')
 
 provides=("${_pkgname}")
@@ -40,8 +36,6 @@ prepare() {
 
   # Apply patches
   patch -Np1 <"${srcdir}/scrollback.diff"
-  patch -Np1 <"${srcdir}/scrollback-mouse.diff"
-  patch -Np1 <"${srcdir}/scrollback-mouse-altscreen.diff"
 
   # # Apply changes to configuration file
   make config.h
