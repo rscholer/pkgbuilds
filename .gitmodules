@@ -1,0 +1,18 @@
+[submodule "aur/desktoggle"]
+	path = aur/desktoggle
+	url = aur:desktoggle
+[submodule "aur/elementary-xfce-icons-git"]
+	path = aur/elementary-xfce-icons-git
+	url = aur:elementary-xfce-icons-git
+[submodule "aur/libreoffice-style-elementary"]
+	path = aur/libreoffice-style-elementary
+	url = aur:libreoffice-style-elementary
+[submodule "aur/mp3diags"]
+	path = aur/mp3diags
+	url = aur:mp3diags
+[submodule "aur/libreoffice-style-elementary-git"]
+	path = aur/libreoffice-style-elementary-git
+	url = aur:libreoffice-style-elementary-git
+[submodule "aur/desktoggle-git"]
+	path = aur/desktoggle-git
+	url = aur:desktoggle-git
