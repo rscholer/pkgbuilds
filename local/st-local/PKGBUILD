@@ -3,7 +3,7 @@
 _pkgname='st'
 pkgname='st-local'
 pkgver=0.7
-pkgrel=4
+pkgrel=5
 pkgdesc='Simple virtual terminal emulator for X'
 url="http://${_pkgname}.suckless.org"
 arch=('i686' 'x86_64')
@@ -15,7 +15,7 @@ source=("http://dl.suckless.org/${_pkgname}/${_pkgname}-${pkgver}.tar.gz"
         'config.diff')
 sha256sums=('f7870d906ccc988926eef2cc98950a99cc78725b685e934c422c03c1234e6000'
             'f721b15a5aa8d77a4b6b44713131c5f55e7fca04006bc0a3cb140ed51c14cfb6'
-            'da44a4900c9cdf752e9c17a900c2b24c4ecc77daa6f503357e1d54eaaf245c74')
+            '5ba937c60182b8af0ca75a6246b2b20d9ea0b84a82fce23a3ce433b50452c94a')
 
 provides=("${_pkgname}")
 conflicts=("${_pkgname}" "${_pkgname}-git")

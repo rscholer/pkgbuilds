@@ -6,7 +6,7 @@ diff a/config.h b/config.h
   * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
   */
 -static char font[] = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
-+static char font[] = "Source Code Pro:size=10:antialias=true:hinting=true";
++static char font[] = "monospace:size=10:antialias=true:hinting=true";
  static int borderpx = 2;
  #define histsize 2000
 
