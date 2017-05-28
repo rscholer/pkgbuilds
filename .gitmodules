@@ -16,3 +16,6 @@
 [submodule "aur/desktoggle-git"]
 	path = aur/desktoggle-git
 	url = aur:desktoggle-git
+[submodule "aur/exfalso"]
+	path = aur/exfalso
+	url = aur:exfalso
