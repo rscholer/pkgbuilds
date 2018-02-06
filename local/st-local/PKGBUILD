@@ -3,15 +3,15 @@
 _pkgname='st'
 pkgname='st-local'
 pkgver=0.7
-pkgrel=5
+pkgrel=6
 pkgdesc='Simple virtual terminal emulator for X'
-url="http://${_pkgname}.suckless.org"
+url="https://${_pkgname}.suckless.org"
 arch=('i686' 'x86_64')
 license=('MIT')
 depends=('libxft')
 makedepends=('git')
 source=("http://dl.suckless.org/${_pkgname}/${_pkgname}-${pkgver}.tar.gz"
-        "${url}/patches/${_pkgname}-scrollback-${pkgver}.diff"
+        "${url}/patches/scrollback/${_pkgname}-scrollback-${pkgver}.diff"
         'config.diff')
 sha256sums=('f7870d906ccc988926eef2cc98950a99cc78725b685e934c422c03c1234e6000'
             'f721b15a5aa8d77a4b6b44713131c5f55e7fca04006bc0a3cb140ed51c14cfb6'
