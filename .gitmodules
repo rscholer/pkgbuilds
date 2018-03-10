@@ -19,3 +19,6 @@
 [submodule "aur/mp3diags"]
 	path = aur/mp3diags
 	url = aur:mp3diags
+[submodule "aur/elementary-xfce-icons"]
+	path = aur/elementary-xfce-icons
+	url = aur:elementary-xfce-icons
