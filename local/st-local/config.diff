@@ -1,25 +1,24 @@
-diff a/config.h b/config.h
 --- a/config.h
 +++ b/config.h
 @@ -5,7 +5,7 @@
   *
   * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
   */
--static char font[] = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
-+static char font[] = "monospace:size=10:antialias=true:hinting=true";
+-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
++static char *font = "monospace:size=10:antialias=true:hinting=true";
  static int borderpx = 2;
- #define histsize 2000
 
-@@ -33,7 +33,7 @@ static float chscale = 1.0;
+ /*
+@@ -32,7 +32,7 @@
   *
   * More advanced example: " `'\"()[]{}"
   */
--static char worddelimiters[] = " ";
-+static char worddelimiters[] = " '`\"()[]{}<>|";
+-char *worddelimiters = " ";
++char *worddelimiters = " '`\"()[]{}<>|";
 
  /* selection timeouts (in milliseconds) */
  static unsigned int doubleclicktimeout = 300;
-@@ -86,30 +86,30 @@ static unsigned int tabspaces = 8;
+@@ -85,30 +85,30 @@
  /* Terminal colors (16 first used in escape sequence) */
  static const char *colorname[] = {
  	/* 8 normal colors */
@@ -68,18 +67,18 @@ diff a/config.h b/config.h
  };
 
 
-@@ -117,8 +117,8 @@ static const char *colorname[] = {
+@@ -116,8 +116,8 @@
   * Default colors (colorname index)
   * foreground, background, cursor, reverse cursor
   */
--static unsigned int defaultfg = 7;
--static unsigned int defaultbg = 0;
-+static unsigned int defaultfg = 256;
-+static unsigned int defaultbg = 257;
+-unsigned int defaultfg = 7;
+-unsigned int defaultbg = 0;
++unsigned int defaultfg = 256;
++unsigned int defaultbg = 257;
  static unsigned int defaultcs = 256;
  static unsigned int defaultrcs = 257;
 
-@@ -129,7 +129,7 @@ static unsigned int defaultrcs = 257;
+@@ -128,7 +128,7 @@
   * 6: Bar ("|")
   * 7: Snowman ("☃")
   */
@@ -87,4 +86,4 @@ diff a/config.h b/config.h
 +static unsigned int cursorshape = 4;
 
  /*
-  * Default colour and shape of the mouse cursor
+  * Default columns and rows numbers

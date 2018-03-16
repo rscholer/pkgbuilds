@@ -2,8 +2,8 @@
 
 _pkgname='st'
 pkgname='st-local'
-pkgver=0.7
-pkgrel=7
+pkgver=0.8
+pkgrel=1
 pkgdesc='Simple virtual terminal emulator for X'
 url="https://${_pkgname}.suckless.org"
 arch=('i686' 'x86_64')
@@ -11,13 +11,15 @@ license=('MIT')
 depends=('libxft')
 makedepends=('git')
 source=("http://dl.suckless.org/${_pkgname}/${_pkgname}-${pkgver}.tar.gz"
-        "${url}/patches/hidecursor/${_pkgname}-hidecursor-${pkgver}.diff"
-        "${url}/patches/scrollback/${_pkgname}-scrollback-${pkgver}.diff"
+        # "${url}/patches/hidecursor/${_pkgname}-hidecursor-${pkgver}.diff"
+        # "${url}/patches/scrollback/${_pkgname}-scrollback-${pkgver}.diff"
+        "${url}/patches/hidecursor/${_pkgname}-hidecursor-20170404-745c40f.diff"
+        "${url}/patches/scrollback/${_pkgname}-scrollback-20180311-c5ba9c0.diff"
         'config.diff')
-sha256sums=('f7870d906ccc988926eef2cc98950a99cc78725b685e934c422c03c1234e6000'
-            '51290d95297062c9d077d2ffc803e71f6ea95a5ff3ff59182f80ba0327de2ae1'
-            'f721b15a5aa8d77a4b6b44713131c5f55e7fca04006bc0a3cb140ed51c14cfb6'
-            '5ba937c60182b8af0ca75a6246b2b20d9ea0b84a82fce23a3ce433b50452c94a')
+sha256sums=('77353920d07d66c684a0f57ec37c2670c42fdc5c871d6382b701601cdc597576'
+            'bce5188fbd008f4bbf2c46aaddba0b691e56788d5706361f315e4c0f3c35836a'
+            'a7f61a8a9e0cdc03dbb8c0e929dcfec939d7d9ce0392db45cb01f1f9f812cc51'
+            'd668fe238bb1d3ce2697d01fbe603b28c53df685eb9afe91c12934b1b854b019')
 
 provides=("${_pkgname}")
 conflicts=("${_pkgname}" "${_pkgname}-git")
@@ -27,17 +29,20 @@ prepare() {
 
   # Use Flags as defined in makepkg.conf
   sed \
-    -e 's/CFLAGS =/CFLAGS +=/g' \
     -e 's/CPPFLAGS =/CPPFLAGS +=/g' \
-    -e 's/LDFLAGS =/LDFLAGS +=/g' \
     -i config.mk
 
   # Do not build terminfo descriptions. ncurses distributes them already.
-  sed '/@tic/d' -i Makefile
+  sed \
+    -e '/tic/d' \
+    -e '/@echo Please/d' \
+    -i Makefile
 
   # Apply patches
-  patch -Np1 <"${srcdir}/${_pkgname}-hidecursor-${pkgver}.diff"
-  patch -Np1 <"${srcdir}/${_pkgname}-scrollback-${pkgver}.diff"
+  patch -Np1 <"${srcdir}/${_pkgname}-hidecursor-20170404-745c40f.diff"
+  # patch -Np1 <"${srcdir}/${_pkgname}-hidecursor-${pkgver}.diff"
+  patch -Np1 <"${srcdir}/${_pkgname}-scrollback-20180311-c5ba9c0.diff"
+  # patch -Np1 <"${srcdir}/${_pkgname}-scrollback-${pkgver}.diff"
 
   # Apply changes to configuration file
   make config.h
