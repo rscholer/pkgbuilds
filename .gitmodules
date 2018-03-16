@@ -10,12 +10,6 @@
 [submodule "aur/exfalso"]
 	path = aur/exfalso
 	url = aur:exfalso
-[submodule "aur/libreoffice-style-elementary"]
-	path = aur/libreoffice-style-elementary
-	url = aur:libreoffice-style-elementary
-[submodule "aur/libreoffice-style-elementary-git"]
-	path = aur/libreoffice-style-elementary-git
-	url = aur:libreoffice-style-elementary-git
 [submodule "aur/mp3diags"]
 	path = aur/mp3diags
 	url = aur:mp3diags
