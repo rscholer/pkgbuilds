@@ -2,8 +2,8 @@
 
 _pkgname='st'
 pkgname='st-local'
-pkgver=0.8
-pkgrel=3
+pkgver=0.8.1
+pkgrel=1
 pkgdesc='Simple virtual terminal emulator for X'
 url="https://${_pkgname}.suckless.org"
 arch=('i686' 'x86_64')
@@ -11,11 +11,11 @@ license=('MIT')
 depends=('libxft')
 makedepends=('git')
 source=("http://dl.suckless.org/${_pkgname}/${_pkgname}-${pkgver}.tar.gz"
-        "${url}/patches/hidecursor/${_pkgname}-hidecursor-${pkgver}.diff"
-        "${url}/patches/scrollback/${_pkgname}-scrollback-${pkgver}.diff"
+        "${url}/patches/hidecursor/${_pkgname}-hidecursor-0.8.diff"
+        "${url}/patches/scrollback/${_pkgname}-scrollback-0.8.diff"
         'config.diff')
-sha256sums=('77353920d07d66c684a0f57ec37c2670c42fdc5c871d6382b701601cdc597576'
-            '433cc79cffe3266660924c09be3d8209127065eba1740cb9e22bee54154c6768'
+sha256sums=('c4fb0fe2b8d2d3bd5e72763e80a8ae05b7d44dbac8f8e3bb18ef0161c7266926'
+            'b330af3d9934587549636bc8db4b5d6d9d8eed0e323afd29283dcdec38a3dfc1'
             '8279d347c70bc9b36f450ba15e1fd9ff62eedf49ce9258c35d7f1cfe38cca226'
             'd668fe238bb1d3ce2697d01fbe603b28c53df685eb9afe91c12934b1b854b019')
 
@@ -37,8 +37,8 @@ prepare() {
     -i Makefile
 
   # Apply patches
-  patch -Np1 <"${srcdir}/${_pkgname}-hidecursor-${pkgver}.diff"
-  patch -Np1 <"${srcdir}/${_pkgname}-scrollback-${pkgver}.diff"
+  patch -Np1 <"${srcdir}/${_pkgname}-hidecursor-0.8.diff"
+  patch -Np1 <"${srcdir}/${_pkgname}-scrollback-0.8.diff"
 
   # Apply changes to configuration file
   make config.h
