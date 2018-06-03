@@ -1,5 +1,5 @@
 
-# Created by https://www.gitignore.io/api/archlinuxpackages
+# Created by https://www.gitignore.io/api/git,ArchLinuxPackages
 
 ### ArchLinuxPackages ###
 *.tar
@@ -16,4 +16,8 @@
 pkg/
 src/
 
-# End of https://www.gitignore.io/api/archlinuxpackages
+### Git ###
+*.orig
+
+
+# End of https://www.gitignore.io/api/git,ArchLinuxPackages
