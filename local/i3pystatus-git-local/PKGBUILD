@@ -3,23 +3,25 @@
 _pkgname='i3pystatus'
 pkgname="${_pkgname}-git-local"
 pkgver=3.35.r255.g0f4480e
-pkgrel=1
+pkgrel=2
 pkgdesc='A complete replacement for i3status'
 url="https://github.com/enkore/${_pkgname}"
 arch=('any')
 license=('MIT')
-optdepends=('i3ipc-python'
-	'python-basiciw'
-	'python-beautifulsoup4'
-	'python-colour'
-	'python-cssselect'
-	'python-dbus'
-	'python-lxml'
-	'python-netifaces'
-	'python-psutil'
-	'python-pyalsaaudio'
-	'python-pywapi'
-	'wireless_tools'
+optdepends=(
+  'i3ipc-python: "scratchpad" module'
+  'python-basiciw: "network" module'
+  'python-beautifulsoup4: "parcel" and "whosonlocation" modules'
+  'python-colour: dynamic colors'
+  'python-cssselect: "parcel" module'
+  'python-dbus: "now_playing" and "mail.thunderbird" modules'
+  'python-gobject2: "mail.thunderbird" module'
+  'python-gobject: "mail.thunderbird" module'
+  'python-lxml: "parcel" and "sge" modules'
+  'python-netifaces: "network" module'
+  'python-psutil: "mem", "mem_bar", "makewatch", "network" and "swap" modules'
+  'python-pyalsaaudio: "alsa" module'
+  'wireless_tools: "network" module'
 )
 makedepends=('git' 'python-setuptools')
 source=("git+${url}")
@@ -29,23 +31,23 @@ provides=("${_pkgname}")
 conflicts=("${_pkgname}" "${_pkgname}-git")
 
 pkgver() {
-	cd "${_pkgname}"
+  cd "${_pkgname}"
 
-	git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
-	cd "${_pkgname}"
+  cd "${_pkgname}"
 
-	python setup.py build
+  python setup.py build
 }
 
 package() {
-	cd "${_pkgname}"
+  cd "${_pkgname}"
 
-	python setup.py install --skip-build --root="${pkgdir}" --optimize=1
+  python setup.py install --skip-build --root="${pkgdir}" --optimize=1
 
-	install -m 755 -d "${pkgdir}/usr/share/licenses/${pkgname}"
-	install -m 644 -t "${pkgdir}/usr/share/licenses/${PKGNAME}" MIT-LICENSE
+  install -m 755 -d "${pkgdir}/usr/share/licenses/${pkgname}"
+  install -m 644 -t "${pkgdir}/usr/share/licenses/${PKGNAME}" MIT-LICENSE
 }
 # vim:set ts=2 sw=2 et:
