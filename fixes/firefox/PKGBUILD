@@ -33,9 +33,11 @@ _url_release="https://ftp.mozilla.org/pub/${pkgname}/releases"
 source=(
 	"${_url_release}/${pkgver}/linux-i686/en-US/${pkgname}-${pkgver}.tar.bz2"
 	'firefox.desktop'
+	'vendor.js'
 )
 sha256sums=('3fcd3faf06280dc54bc4544a13d10d40f81d6ef5235624116e846c65000aad13'
-            '677e1bde4c6b3cff114345c211805c7c43085038ca0505718a11e96432e9811a')
+            '677e1bde4c6b3cff114345c211805c7c43085038ca0505718a11e96432e9811a'
+            '531b9c5c0526d1f97e6ce388c4b95e70045e97008fb17318b00653c99f65bd31')
 
 package() {
 	install -m 755 -d "${pkgdir}/usr/lib"
@@ -50,4 +52,8 @@ package() {
 	install -m 755 -d "${pkgdir}/usr/share/pixmaps"
 	cp "${srcdir}/firefox/browser/chrome/icons/default/default128.png" \
 	   "${pkgdir}/usr/share/pixmaps/firefox.png"
+
+	install -m 755 -d "${pkgdir}/usr/lib/firefox/browser/defaults/preferences"
+	cp "${srcdir}/vendor.js" \
+	   "${pkgdir}/usr/lib/firefox/browser/defaults/preferences/vendor.js"
 }
