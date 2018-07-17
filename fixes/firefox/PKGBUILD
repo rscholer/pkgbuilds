@@ -1,0 +1,53 @@
+ # Contributor: timsong
+pkgname=firefox
+pkgver=61.0.1
+pkgrel=0
+pkgdesc="Standalone web browser from mozilla.org"
+arch=('i686')
+license=(MPL GPL LGPL)
+url="https://www.mozilla.org/firefox/"
+depends=(
+	gtk3
+	mozilla-common
+	libxt
+	startup-notification
+	mime-types
+	dbus-glib
+	ffmpeg
+	nss
+	hunspell-en_US
+	sqlite
+	ttf-font
+	libpulse
+	libvpx
+	icu
+)
+optdepends=(
+	'networkmanager: location detection via available WiFi network'
+	'libnotify: Notification integration'
+	'pulseaudio: Audio support'
+	'speech-dispatcher: Text-to-Speech'
+)
+options=(!emptydirs !strip)
+_url_release="https://ftp.mozilla.org/pub/${pkgname}/releases"
+source=(
+	"${_url_release}/${pkgver}/linux-i686/en-US/${pkgname}-${pkgver}.tar.bz2"
+	'firefox.desktop'
+)
+sha256sums=('3fcd3faf06280dc54bc4544a13d10d40f81d6ef5235624116e846c65000aad13'
+            '677e1bde4c6b3cff114345c211805c7c43085038ca0505718a11e96432e9811a')
+
+package() {
+	install -m 755 -d "${pkgdir}/usr/lib"
+	cp -r "${srcdir}/firefox" "${pkgdir}/usr/lib/firefox"
+
+	install -m 755 -d "${pkgdir}/usr/bin"
+	ln -s "/usr/lib/firefox/firefox" "${pkgdir}/usr/bin/firefox"
+
+	install -m 755 -d "${pkgdir}/usr/share/applications"
+	cp "${srcdir}/firefox.desktop" "${pkgdir}/usr/share/applications"
+
+	install -m 755 -d "${pkgdir}/usr/share/pixmaps"
+	cp "${srcdir}/firefox/browser/chrome/icons/default/default128.png" \
+	   "${pkgdir}/usr/share/pixmaps/firefox.png"
+}
