@@ -1,11 +1,11 @@
  # Contributor: timsong
-pkgname=firefox
+pkgname='firefox'
 pkgver=61.0.1
 pkgrel=0
 pkgdesc="Standalone web browser from mozilla.org"
 arch=('i686')
 license=(MPL GPL LGPL)
-url="https://www.mozilla.org/firefox/"
+url="https://www.mozilla.org/${pkgname}/"
 depends=(
 	gtk3
 	mozilla-common
@@ -23,7 +23,7 @@ depends=(
 	icu
 )
 optdepends=(
-	'networkmanager: location detection via available WiFi network'
+	'networkmanager: Location detection via available WiFi networks'
 	'libnotify: Notification integration'
 	'pulseaudio: Audio support'
 	'speech-dispatcher: Text-to-Speech'
@@ -32,28 +32,41 @@ options=(!emptydirs !strip)
 _url_release="https://ftp.mozilla.org/pub/${pkgname}/releases"
 source=(
 	"${_url_release}/${pkgver}/linux-i686/en-US/${pkgname}-${pkgver}.tar.bz2"
-	'firefox.desktop'
+	"${pkgname}-symbolic.svg"
+	"${pkgname}.desktop"
 	'vendor.js'
 )
 sha256sums=('3fcd3faf06280dc54bc4544a13d10d40f81d6ef5235624116e846c65000aad13'
+            '9a1a572dc88014882d54ba2d3079a1cf5b28fa03c5976ed2cb763c93dabbd797'
             '677e1bde4c6b3cff114345c211805c7c43085038ca0505718a11e96432e9811a'
             '531b9c5c0526d1f97e6ce388c4b95e70045e97008fb17318b00653c99f65bd31')
 
 package() {
 	install -m 755 -d "${pkgdir}/usr/lib"
-	cp -r "${srcdir}/firefox" "${pkgdir}/usr/lib/firefox"
+	cp -r "${srcdir}/${pkgname}" "${pkgdir}/usr/lib/${pkgname}"
 
+	# Allow ${pkgname} to be started without manipulating $PATH.
 	install -m 755 -d "${pkgdir}/usr/bin"
-	ln -s "/usr/lib/firefox/firefox" "${pkgdir}/usr/bin/firefox"
+	ln -s "/usr/lib/${pkgname}/${pkgname}" "${pkgdir}/usr/bin/${pkgname}"
 
+	# Install desktop file.
 	install -m 755 -d "${pkgdir}/usr/share/applications"
-	cp "${srcdir}/firefox.desktop" "${pkgdir}/usr/share/applications"
+	cp "${srcdir}/${pkgname}.desktop" "${pkgdir}/usr/share/applications"
 
-	install -m 755 -d "${pkgdir}/usr/share/pixmaps"
-	cp "${srcdir}/firefox/browser/chrome/icons/default/default128.png" \
-	   "${pkgdir}/usr/share/pixmaps/firefox.png"
+	# Install icons.
+	for i in 16 32 48 64 128; do
+		install -m 755 -d "${pkgdir}/usr/share/icons/hicolor/${i}x${i}/apps"
 
-	install -m 755 -d "${pkgdir}/usr/lib/firefox/browser/defaults/preferences"
+		ln -s "/usr/lib/${pkgname}/browser/chrome/icons/default/default${i}.png" \
+		      "${pkgdir}/usr/share/icons/hicolor/${i}x${i}/apps/${pkgname}.png"
+	done
+
+	install -m 755 -d "${pkgdir}/usr/share/icons/hicolor/symbolic/apps"
+	cp "${srcdir}/${pkgname}-symbolic.svg" \
+	   "${pkgdir}/usr/share/icons/hicolor/symbolic/apps/${pkgname}-symbolic.svg"
+
+	# Install archlinux speciific settings.
+	install -m 755 -d "${pkgdir}/usr/lib/${pkgname}/browser/defaults/preferences"
 	cp "${srcdir}/vendor.js" \
-	   "${pkgdir}/usr/lib/firefox/browser/defaults/preferences/vendor.js"
+	   "${pkgdir}/usr/lib/${pkgname}/browser/defaults/preferences/vendor.js"
 }
