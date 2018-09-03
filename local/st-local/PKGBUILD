@@ -3,7 +3,7 @@
 _pkgname='st'
 pkgname='st-local'
 pkgver=0.8.1
-pkgrel=2
+pkgrel=3
 pkgdesc='Simple virtual terminal emulator for X'
 url="https://${_pkgname}.suckless.org"
 arch=('i686' 'x86_64')
@@ -11,10 +11,12 @@ license=('MIT')
 depends=('libxft')
 makedepends=('git')
 source=("http://dl.suckless.org/${_pkgname}/${_pkgname}-${pkgver}.tar.gz"
+        "${url}/patches/clipboard/${_pkgname}-clipboard-${pkgver}.diff"
         "${url}/patches/hidecursor/${_pkgname}-hidecursor-${pkgver}.diff"
         "${url}/patches/scrollback/${_pkgname}-scrollback-0.8.diff"
         'config.diff')
 sha256sums=('c4fb0fe2b8d2d3bd5e72763e80a8ae05b7d44dbac8f8e3bb18ef0161c7266926'
+            'f22e0165aacb2bc86d000728c81f68022abcc601dbfd09e516e1ba772225d7e6'
             'bf3fe4e855f67fc9ae69b7328399ce06567f6aae3c9fb7fc8e7ec26c89e41dfd'
             '8279d347c70bc9b36f450ba15e1fd9ff62eedf49ce9258c35d7f1cfe38cca226'
             'd668fe238bb1d3ce2697d01fbe603b28c53df685eb9afe91c12934b1b854b019')
@@ -37,6 +39,7 @@ prepare() {
     -i Makefile
 
   # Apply patches
+  patch -Np1 <"${srcdir}/${_pkgname}-clipboard-${pkgver}.diff"
   patch -Np1 <"${srcdir}/${_pkgname}-hidecursor-${pkgver}.diff"
   patch -Np1 <"${srcdir}/${_pkgname}-scrollback-0.8.diff"
 
