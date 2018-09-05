@@ -1,5 +1,5 @@
 pkgname='firefox'
-pkgver=61.0.2
+pkgver=62.0
 pkgrel=0
 pkgdesc="Standalone web browser from mozilla.org"
 arch=('i686')
@@ -27,7 +27,7 @@ optdepends=(
   'pulseaudio: Audio support'
   'speech-dispatcher: Text-to-Speech'
 )
-options=(!emptydirs !strip)
+options=(!emptydirs strip)
 _url_release="https://ftp.mozilla.org/pub/${pkgname}/releases"
 source=(
   "${pkgname}-symbolic.svg"
@@ -40,7 +40,7 @@ source_i686=(
 sha256sums=('9a1a572dc88014882d54ba2d3079a1cf5b28fa03c5976ed2cb763c93dabbd797'
             '677e1bde4c6b3cff114345c211805c7c43085038ca0505718a11e96432e9811a'
             '531b9c5c0526d1f97e6ce388c4b95e70045e97008fb17318b00653c99f65bd31')
-sha256sums_i686=('829c8d38b05212b82e1c340c1467ea3c2690184cd319d682b865b97f8d4b2da6')
+sha256sums_i686=('ab4e848172223c746e4070afce15a000b890c5fa9321895a3858a4775a1c9f89')
 
 package() {
   install -m 755 -d "${pkgdir}/usr/lib"
