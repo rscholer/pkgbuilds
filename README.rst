@@ -12,8 +12,8 @@ Make sure to set the following options globally or on a per-repository basis,
 
   [url "https://aur.archlinux.org/"]
     insteadOf = "aur:"
-  [url "ssh://aur@aur.archlinux.org/"]
-    insteadOf = "aur:"
+  [url "ssh+git://aur@aur.archlinux.org/"]
+    pushInsteadOf = "aur:"
 
 Categories
 ----------
