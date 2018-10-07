@@ -1,5 +1,5 @@
 pkgname='firefox'
-pkgver=62.0
+pkgver=62.0.3
 pkgrel=0
 pkgdesc="Standalone web browser from mozilla.org"
 arch=('i686')
@@ -40,7 +40,7 @@ source_i686=(
 sha256sums=('0f6c125944af60635e477d3f8f9de90b6c4b603c2e6a69567751265c2fa19785'
             '677e1bde4c6b3cff114345c211805c7c43085038ca0505718a11e96432e9811a'
             '531b9c5c0526d1f97e6ce388c4b95e70045e97008fb17318b00653c99f65bd31')
-sha256sums_i686=('ab4e848172223c746e4070afce15a000b890c5fa9321895a3858a4775a1c9f89')
+sha256sums_i686=('c59d69fce921804d1fdf91b208ef987222abdbc60ff551c737e82b82b9cbe791')
 
 package() {
   install -m 755 -d "${pkgdir}/usr/lib"
