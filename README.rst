@@ -1,7 +1,7 @@
 =========
 pkgbuilds
 =========
-My PKGBUILDs for `Arch Linux`_.
+My PKGBUILDs for `Arch Linux`_ and `Arch Linux 32`_.
 
 Git configuration
 -----------------
@@ -23,4 +23,5 @@ Categories
 
 
 .. _AUR: https://aur.archlinux.org/
+.. _Arch Linux 32: https://www.archlinux32.org/
 .. _Arch Linux: https://www.archlinux.org/
