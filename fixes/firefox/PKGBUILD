@@ -37,7 +37,7 @@ source=(
 source_i686=(
   "${pkgname}_i686-${pkgver}.tar.bz2::${_url_release}/${pkgver}/linux-i686/en-US/${pkgname}-${pkgver}.tar.bz2"
 )
-sha256sums=('9a1a572dc88014882d54ba2d3079a1cf5b28fa03c5976ed2cb763c93dabbd797'
+sha256sums=('0f6c125944af60635e477d3f8f9de90b6c4b603c2e6a69567751265c2fa19785'
             '677e1bde4c6b3cff114345c211805c7c43085038ca0505718a11e96432e9811a'
             '531b9c5c0526d1f97e6ce388c4b95e70045e97008fb17318b00653c99f65bd31')
 sha256sums_i686=('ab4e848172223c746e4070afce15a000b890c5fa9321895a3858a4775a1c9f89')
