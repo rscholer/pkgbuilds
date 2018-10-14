@@ -3,13 +3,12 @@
 _pkgname='st'
 pkgname='st-local'
 pkgver=0.8.1
-pkgrel=5
+pkgrel=6
 pkgdesc='Simple virtual terminal emulator for X'
 url="https://${_pkgname}.suckless.org"
 arch=('i686' 'x86_64')
 license=('MIT')
 depends=('libxft')
-makedepends=('git')
 source=("http://dl.suckless.org/${_pkgname}/${_pkgname}-${pkgver}.tar.gz"
         "${url}/patches/clipboard/${_pkgname}-clipboard-${pkgver}.diff"
         "${url}/patches/hidecursor/${_pkgname}-hidecursor-${pkgver}.diff"
