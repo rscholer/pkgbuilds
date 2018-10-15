@@ -3,7 +3,7 @@
 _pkgname='st'
 pkgname='st-local'
 pkgver=0.8.1
-pkgrel=6
+pkgrel=7
 pkgdesc='Simple virtual terminal emulator for X'
 url="https://${_pkgname}.suckless.org"
 arch=('i686' 'x86_64')
@@ -61,7 +61,10 @@ package() {
 
   make PREFIX=/usr DESTDIR="${pkgdir}" install
 
+  install -m 755 -d "${pkgdir}/usr/share/${_pkgname}"
   install -m 755 -d "${pkgdir}/usr/share/licenses/${pkgname}"
+
+  install -m 644 -t "${pkgdir}/usr/share/${_pkgname}" "${_pkgname}.info"
   install -m 644 -t "${pkgdir}/usr/share/licenses/${pkgname}" LICENSE
 }
 # vim:set ts=2 sw=2 et:
