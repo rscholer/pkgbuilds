@@ -3,7 +3,7 @@
 _pkgname='i3pystatus'
 pkgname="${_pkgname}-git-local"
 pkgver=3.35.r260.gf6e3b40
-pkgrel=1
+pkgrel=2
 pkgdesc='A complete replacement for i3status'
 url="https://github.com/enkore/${_pkgname}"
 arch=('any')
@@ -49,6 +49,6 @@ package() {
   python setup.py install --skip-build --root="${pkgdir}" --optimize=1
 
   install -m 755 -d "${pkgdir}/usr/share/licenses/${pkgname}"
-  install -m 644 -t "${pkgdir}/usr/share/licenses/${PKGNAME}" MIT-LICENSE
+  install -m 644 -t "${pkgdir}/usr/share/licenses/${pkgname}" MIT-LICENSE
 }
 # vim:set ts=2 sw=2 et:
