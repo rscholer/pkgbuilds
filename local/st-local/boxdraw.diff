@@ -1,4 +1,4 @@
-From 8c02fe1f2bf5507a062f699fc2d7c25b14e39a08 Mon Sep 17 00:00:00 2001
+From 1630b7016d26c266d004f38ecfef2c4b708aa9a6 Mon Sep 17 00:00:00 2001
 From: "Avi Halachmi (:avih)" <avihpit@yahoo.com>
 Date: Fri, 26 Oct 2018 13:11:20 +0300
 Subject: [PATCH] boxdraw: custom-draw U+25XX lines/blocks to align seamlessly
@@ -51,7 +51,7 @@ index 0b3cecd..8d3af33 100644
 
 diff --git a/boxdraw.c b/boxdraw.c
 new file mode 100644
-index 0000000..9190b16
+index 0000000..357250f
 --- /dev/null
 +++ b/boxdraw.c
 @@ -0,0 +1,141 @@
@@ -152,7 +152,7 @@ index 0000000..9190b16
 +		int multi_light = light & (light - 1);
 +		int multi_double = double_ & (double_ - 1);
 +		/* light crosses double only at DH+LV, DV+LH (ref. shapes)  */
-+		int d = arc || multi_double && !multi_light ? -s : 0;
++		int d = arc || (multi_double && !multi_light) ? -s : 0;
 +
 +		if (bd & LL)
 +			XftDrawRect(xd, fg, x, y + h2, w2 + s + d, s);
