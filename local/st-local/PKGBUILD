@@ -3,24 +3,24 @@
 _pkgname='st'
 pkgname='st-local'
 pkgver=0.8.1
-pkgrel=9
+pkgrel=10
 pkgdesc='Simple virtual terminal emulator for X'
 url="https://${_pkgname}.suckless.org"
 arch=('i686' 'x86_64')
 license=('MIT')
 depends=('libxft')
 source=("http://dl.suckless.org/${_pkgname}/${_pkgname}-${pkgver}.tar.gz"
+        "${url}/patches/boxdraw/${_pkgname}-boxdraw-2018-11-01-30ec9a3.patch"
         "${url}/patches/clipboard/${_pkgname}-clipboard-${pkgver}.diff"
         "${url}/patches/hidecursor/${_pkgname}-hidecursor-${pkgver}.diff"
         "${url}/patches/scrollback/${_pkgname}-scrollback-0.8.diff"
-        'boxdraw.diff'
         'config.diff'
         'selclear.diff')
 sha256sums=('c4fb0fe2b8d2d3bd5e72763e80a8ae05b7d44dbac8f8e3bb18ef0161c7266926'
+            '8d9082636898151554df8d4fb3be077dca147ac172aa016e6509b3a78bd126c8'
             'f22e0165aacb2bc86d000728c81f68022abcc601dbfd09e516e1ba772225d7e6'
             'bf3fe4e855f67fc9ae69b7328399ce06567f6aae3c9fb7fc8e7ec26c89e41dfd'
             '8279d347c70bc9b36f450ba15e1fd9ff62eedf49ce9258c35d7f1cfe38cca226'
-            'efcceec418ffd45850fba772ffb812c99fee8fbd0897c67731ab6af37e8bbfd1'
             'bd5f7719199626d4f02b13fd16c83a1b7475a6781cea154dcc1d1419fc101800'
             '763a7795cd094d7840139683373e38d783cb1db597893cf8aeb01b90474b5ebf')
 
@@ -42,15 +42,16 @@ prepare() {
     -i Makefile
 
   # Apply patches
+  patch -Np1 <"${srcdir}/${_pkgname}-boxdraw-2018-11-01-30ec9a3.patch"
   patch -Np1 <"${srcdir}/${_pkgname}-clipboard-${pkgver}.diff"
   patch -Np1 <"${srcdir}/${_pkgname}-hidecursor-${pkgver}.diff"
   patch -Np1 <"${srcdir}/${_pkgname}-scrollback-0.8.diff"
-  patch -Np1 <"${srcdir}/boxdraw.diff"
   patch -Np1 <"${srcdir}/selclear.diff"
 
   # Apply changes to configuration file
   make config.h
   patch -Np1 <"${srcdir}/config.diff"
+  sed -e 's/boxdraw = 0/boxdraw = 1/' -i config.h
 }
 
 build() {
