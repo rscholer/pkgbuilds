@@ -6,24 +6,24 @@ arch=('i686')
 license=(MPL GPL LGPL)
 url="https://www.mozilla.org/${pkgname}/"
 depends=(
-  gtk3
-  mozilla-common
-  libxt
-  startup-notification
-  mime-types
   dbus-glib
   ffmpeg
-  nss
+  gtk3
   hunspell-en_US
-  sqlite
-  ttf-font
+  icu
   libpulse
   libvpx
-  icu
+  libxt
+  mime-types
+  mozilla-common
+  nss
+  sqlite
+  startup-notification
+  ttf-font
 )
 optdepends=(
-  'networkmanager: Location detection via available WiFi networks'
   'libnotify: Notification integration'
+  'networkmanager: Location detection via available WiFi networks'
   'pulseaudio: Audio support'
   'speech-dispatcher: Text-to-Speech'
 )
