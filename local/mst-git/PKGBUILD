@@ -1,0 +1,39 @@
+# Maintainer: Raphael Scholer <rascholer@gmail.com>
+
+_pkgname='mst'
+pkgname="${_pkgname}-git"
+pkgver=0.1.r1.g7772115
+pkgrel=1
+pkgdesc='Simple virtual terminal emulator for X'
+arch=('i686' 'x86_64')
+url="https://github.com/rscholer/${_pkgname}"
+conflicts=("${_pkgname}")
+provides=("${_pkgname}")
+license=('MIT')
+depends=('libxft')
+makedepends=('git' 'meson')
+source=("git+${url}")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "${_pkgname}"
+
+  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+build() {
+  cd "${_pkgname}"
+
+  arch-meson build
+  ninja -C build
+}
+
+package() {
+  cd "${_pkgname}"
+
+  DESTDIR="${pkgdir}" meson install -C build
+
+  install -m 755 -d "${pkgdir}/usr/share/licenses/${pkgname}"
+  install -m 644 -t "${pkgdir}/usr/share/licenses/${pkgname}" LICENSE
+}
+# vim:set ts=2 sw=2 et:
